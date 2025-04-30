@@ -1,0 +1,388 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>I DECIDED Upskill Course</title>
+  <link rel="stylesheet" href="./styles.css" type="text/css">
+  <!-- Google Fonts: Headings and Body -->
+  <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header: full-width background with logo and navigation linking to separate pages -->
+  <header class="header">
+    <div class="nav-inner">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo.png" alt="I DECIDED Logo" id="logo">
+        </a>
+      </div>
+      <nav class="nav">
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="news.html">News &amp; Stories</a></li>
+          <li><a href="modules.html">Upskill Course</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="donate.html" class="donate-btn">Donate</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <video autoplay muted loop class="hero-video">
+      <source src="videos/students-collab.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="kinetic-headline">I DECIDED</h1>
+      <p class="tagline">A Blueprint for Clarity, Confidence, and Cashflow</p>
+    </div>
+  </section>
+  
+  <!-- About Section -->
+  <section id="about" class="about color-block">
+    <div class="container">
+      <h2>About I DECIDED</h2>
+      <p>
+        Our Upskill Course is designed specifically for recent high school graduates—cutting through the noise with actionable steps and real-world insights. We help you navigate the challenges of life after matric by providing practical lessons, expert mentorship, and a supportive community.
+      </p>
+      <p>
+        "I DECIDED" isn’t just a course—it’s a movement. We’re here to teach you not only what to do but how to build your own success. In addition to the core course content, our program kickstarts community engagement initiatives. Volunteers and organizations join us to support workshops and real-world skill-building that make a tangible impact.
+      </p>
+      <h3>Our Vision</h3>
+      <p>
+        To empower young graduates with the skills, mindset, and confidence needed to navigate life after school and achieve their dreams.
+      </p>
+      <img src="images/vision.svg" alt="Vision Icon" class="section-icon">
+    </div>
+  </section>
+  
+  <!-- Key Course Takeaways Section (renamed from Modules) -->
+  <section id="takeaways" class="modules module-bg">
+    <div class="container">
+      <h2>Key Course Takeaways &amp; Highlights</h2>
+      <div class="modules-grid">
+        <!-- Takeaway Card 1: Mentorship Mastery -->
+        <div class="module-card">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="images/mentor-icon.jpg" alt="Mentorship Icon" class="module-icon">
+              <h3>Mentorship Mastery</h3>
+            </div>
+            <div class="card-back">
+              <ul>
+                <li>Discover how mentors accelerate your growth</li>
+                <li>Learn effective networking strategies</li>
+                <li>Build lasting professional relationships</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Takeaway Card 2: Financial Literacy & Funding -->
+        <div class="module-card">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="images/money.webp" alt="Finance Icon" class="module-icon">
+              <h3>Financial Literacy &amp; Funding</h3>
+            </div>
+            <div class="card-back">
+              <ul>
+                <li>Master debt avoidance and side hustles</li>
+                <li>Explore funding opportunities and scholarships</li>
+                <li>Manage money wisely</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Takeaway Card 3: Career Navigation -->
+        <div class="module-card">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="images/career.webp" alt="Career Icon" class="module-icon">
+              <h3>Career Navigation</h3>
+            </div>
+            <div class="card-back">
+              <ul>
+                <li>Understand job market realities</li>
+                <li>Create standout CV &amp; LinkedIn profiles</li>
+                <li>Chart your unique career path</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Takeaway Card 4: Social Media & Branding -->
+        <div class="module-card">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="images/social.jpg" alt="Social Media Icon" class="module-icon">
+              <h3>Social Media &amp; Branding</h3>
+            </div>
+            <div class="card-back">
+              <ul>
+                <li>Create compelling online content</li>
+                <li>Build your personal brand</li>
+                <li>Learn monetization techniques</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Takeaway Card 5: Pitfalls to Avoid -->
+        <div class="module-card">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="images/failure.webp" alt="Caution Icon" class="module-icon">
+              <h3>Pitfalls to Avoid</h3>
+            </div>
+            <div class="card-back">
+              <ul>
+                <li>Identify common mistakes</li>
+                <li>Learn strategies to overcome setbacks</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Success Stories Section (Testimonials: Videos + Text) -->
+  <section id="success" class="testimonials">
+    <div class="container">
+      <h2>Success Stories</h2>
+      <!-- Video Testimonials -->
+      <div class="testimonial-carousel">
+        <video controls class="testimonial-video">
+          <source src="videos/testimonial1.mp4" type="video/mp4">
+          Your browser does not support video.
+        </video>
+        <video controls class="testimonial-video">
+          <source src="videos/testimonial2.mp4" type="video/mp4">
+          Your browser does not support video.
+        </video>
+        <video controls class="testimonial-video">
+          <source src="videos/testimonial3.mp4" type="video/mp4">
+          Your browser does not support video.
+        </video>
+        <video controls class="testimonial-video">
+          <source src="videos/testimonial4.mp4" type="video/mp4">
+          Your browser does not support video.
+        </video>
+      </div>
+      <!-- Text Testimonials -->
+      <div class="testimonial-quotes">
+        <h3>Hear From Our Graduates</h3>
+        <div class="quote-carousel">
+          <div class="quote">
+            <blockquote>"This course gave me the tools to start my own barbering business!"</blockquote>
+            <cite>– Caitlin</cite>
+          </div>
+          <div class="quote">
+            <blockquote>"I landed my first job thanks to the CV and LinkedIn tips."</blockquote>
+            <cite>– Thabo</cite>
+          </div>
+          <div class="quote">
+            <blockquote>"The mentorship module changed how I approach networking."</blockquote>
+            <cite>– Lerato</cite>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+<!-- Pricing & Investment Section -->
+<section id="pricing">
+  <div class="container">
+    <h2>Pricing &amp; Investment</h2>
+    <p>
+      We offer flexible investment options that secure your spot in our course while integrating you into a vibrant, hands-on community.
+    </p>
+    <div class="pricing-options">
+      <!-- Flexible Investment Card -->
+      <div class="option">
+        <img src="images/investment.jpg" alt="Flexible Investment Icon" class="pricing-icon">
+        <h3>Flexible Investment</h3>
+        <p>
+          Start with a modest R250 deposit and contribute your skills—help at workshops or create social media content—in exchange for enrollment.
+        </p>
+      </div>
+      <!-- Premium Investment Card -->
+      <div class="option">
+        <img src="images/premium.svg" alt="Premium Investment Icon" class="pricing-icon">
+        <h3>Premium Investment</h3>
+        <p>
+          Pay the full fee of R1,500 to gain access to premium mentorship sessions and advanced training, setting you on an accelerated path to success.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  
+  <!-- Enrollment Section -->
+  <section id="enroll" class="enroll">
+    <div class="container">
+      <h2>Join the Movement</h2>
+      <p>
+        Take the first step toward a practical, no-nonsense education that prepares you for success. Your future starts here.
+      </p>
+      <button class="enroll-button">Enroll Now</button>
+    </div>
+  </section>
+  
+<!-- Add this in your index.html where the community section exists -->
+<section id="community">
+  <div class="container">
+    <h2>Community Engagement</h2>
+    <div class="carousel-container">
+      <button class="carousel-arrow left-arrow" aria-label="Previous">
+        <svg width="24" height="40" viewBox="0 0 24 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M23 1L2 20L23 39" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      
+      <div class="community-posts-carousel">
+        <!-- Blog Post 1 -->
+        <a href="news.html#post1" class="community-post">
+          <img src="images/community1.jpg" alt="Blog Post 1">
+          <h3>Empowering Local Talent</h3>
+          <p>Discover how our community workshops are transforming lives through hands-on training and local collaboration.</p>
+          <p class="post-meta">Posted on Jan 15, 2025</p>
+        </a>
+        <!-- Blog Post 2 -->
+        <a href="news.html#post2" class="community-post">
+          <img src="images/community2.webp" alt="Blog Post 2">
+          <h3>Success Through Skill Sharing</h3>
+          <p>Our recent pop-up event brought together professionals and graduates for an inspiring exchange of ideas.</p>
+          <p class="post-meta">Posted on Feb 02, 2025</p>
+        </a>
+        <!-- Blog Post 3 -->
+        <a href="news.html#post3" class="community-post">
+          <img src="images/community3.jpeg" alt="Blog Post 3">
+          <h3>Innovation in Education</h3>
+          <p>Explore the new trends in community-based learning that are reshaping the future of education.</p>
+          <p class="post-meta">Posted on Mar 10, 2025</p>
+        </a>
+        <!-- Blog Post 4 -->
+        <a href="news.html#post4" class="community-post">
+          <img src="images/mentor-icon.jpg" alt="Blog Post 4">
+          <h3>Innovation in Education</h3>
+          <p>Explore the new trends in community-based learning that are reshaping the future of education.</p>
+          <p class="post-meta">Posted on Mar 10, 2025</p>
+        </a>
+      </div>
+      <button class="carousel-arrow right-arrow" aria-label="Next">
+        <svg width="24" height="40" viewBox="0 0 24 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L22 20L1 39" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    
+    <p class="community-description">
+      Beyond the classroom, we host dynamic pop-up events—from free haircuts to barista training—that bring families, professionals, and graduates together for hands-on workshops and real-world skill-building. And if cash is tight, you can trade your talents (like graphic design or digital marketing) to secure your enrollment.
+    </p>
+  </div>
+</section>
+
+<!-- Volunteer Trigger Section -->
+<section id="volunteer" class="volunteer-trigger">
+  <div class="container centered-section">
+    <h2>Powering Community Impact</h2>
+    <br>
+
+    <div class="volunteer-callout">
+      <p>Our program thrives through skilled volunteers and organizations sharing expertise. By offering practical workshops (barbering, barista training, digital skills), we create:</p>
+      <ul class="impact-list">
+        <li>✅ Job-ready graduates through hands-on learning</li>
+        <li>✅ Local business exposure via workshop partnerships</li>
+        <li>✅ 73% employment rate within 6 months (2023 results)</li>
+      </ul>
+      
+    </div>
+    <button class="volunteer-btn" onclick="showVolunteerForm()">Join Our Skill Revolution</button>
+  </div>
+</section>
+
+
+  
+  <!-- Trusted Partners Section -->
+  <section class="trusted-partners">
+    <div class="container">
+      <h2>Trusted By</h2>
+      <div class="partner-grid">
+        <img src="images/FAA_LOGO.avif" alt="FAA NGO">
+        <img src="images/Intle_Logo.avif" alt="Intle College">
+        <img src="images/Massimo_Logo.png" alt="Local Business">
+      </div>
+    </div>
+  </section>
+  
+  <!-- Volunteer Modal -->
+  <div id="volunteerModal" class="volunteer-modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeVolunteerForm()">&times;</span>
+      <h2>Skill Contributor Application</h2>
+      <form id="volunteerForm">
+        <div class="form-group">
+          <input type="text" id="firstName" placeholder="First Name" required>
+          <input type="text" id="lastName" placeholder="Last Name" required>
+        </div>
+        <div class="form-group">
+          <input type="tel" id="contact" placeholder="Contact Number" required>
+          <select id="applicantType" required>
+            <option value="">Individual/Organization</option>
+            <option value="individual">Individual</option>
+            <option value="organization">Organization</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <select id="referralSource" required>
+            <option value="">How did you hear about us?</option>
+            <option value="social-media">Social Media</option>
+            <option value="workshop">Workshop Event</option>
+            <option value="word-of-mouth">Word of Mouth</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <textarea id="skills" placeholder="What skills/services can you offer? (e.g., Haircutting, Career Coaching, Venue Space)" required></textarea>
+        </div>
+        <button type="submit">Submit Application</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Newsletter Section (Shape Your Future) -->
+  <section id="newsletter" class="newsletter">
+    <div class="container">
+      <div class="newsletter-content">
+        <h2>Shape Your Future</h2>
+        <p>Get free resources, workshop invites, and success stories straight to your inbox.</p>
+        <form class="subscribe-form">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Email Address" required>
+          <button type="submit">Get Started →</button>
+        </form>
+      </div>
+    </div>
+  </section>  
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 I DECIDED. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
+        <a href="#"><img src="images/tiktok.png" alt="TikTok"></a>
+        <a href="#"><img src="images/instagram.svg" alt="Instagram"></a>
+      </div>
+    </div>
+  </footer>
+  
+  <script src="./main.js"></script>
+</body>
+</html>
+```

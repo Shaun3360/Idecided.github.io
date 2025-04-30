@@ -1,0 +1,144 @@
+<!-- modules.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upskill Course Modules - I DECIDED</title>
+  <link rel="stylesheet" href="./styles.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="nav-inner">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo.png" alt="I DECIDED Logo">
+        </a>
+      </div>
+      <nav class="nav">
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="modules.html" class="active">Upskill Course</a></li>
+          <li><a href="news.html">News & Stories</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="donate.html" class="donate-btn">Donate</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Course Modules -->
+  <main class="modules-page">
+    <section class="course-overview">
+      <div class="container">
+        <h1>Blueprint for Success</h1>
+        <p class="course-tagline">Practical modules designed to cut through the noise</p>
+        
+        <!-- Accordion Modules -->
+        <div class="module-accordion">
+          <!-- Module 1 -->
+          <div class="module-card open">
+            <button class="module-header">
+              <div class="module-title">
+                <i class="fas fa-handshake module-icon"></i>
+                <h2>Mentorship Mastery</h2>
+              </div>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="module-content">
+              <div class="module-grid">
+                <div class="module-details">
+                  <h3>Why This Matters:</h3>
+                  <ul class="module-list">
+                    <li>Identify potential mentors in your field</li>
+                    <li>Craft effective outreach messages</li>
+                    <li>Build long-term professional relationships</li>
+                  </ul>
+                  <div class="resources">
+                    <h4>Free Resources:</h4>
+                    <a href="#" class="resource-link">Mentorship Email Templates</a>
+                    <a href="#" class="resource-link">Networking Icebreakers PDF</a>
+                  </div>
+                </div>
+                <img src="images/mentor-icon.jpg" alt="Mentorship diagram" class="module-visual">
+              </div>
+            </div>
+          </div>
+
+          <!-- Module 2 -->
+          <div class="module-card">
+            <button class="module-header">
+              <div class="module-title">
+                <i class="fas fa-wallet module-icon"></i>
+                <h2>Financial Literacy & Funding</h2>
+              </div>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="module-content">
+              <div class="module-grid">
+                <div class="module-details">
+                  <h3>Street-Smart Finance:</h3>
+                  <ul class="module-list">
+                    <li>Debt avoidance strategies</li>
+                    <li>R500-to-R5000 side hustle framework</li>
+                    <li>Scholarship hunting tactics</li>
+                  </ul>
+                  <div class="resources">
+                    <h4>Tools Included:</h4>
+                    <a href="#" class="resource-link">Budget Tracker Template</a>
+                    <a href="#" class="resource-link">Income Stream Calculator</a>
+                  </div>
+                </div>
+                <img src="images/finance-illustration.png" alt="Finance chart" class="module-visual">
+              </div>
+            </div>
+          </div>
+
+          <!-- Add remaining modules following same structure -->
+          
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 I DECIDED. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="#"><img src="images/facebook-icon.png" alt="Facebook"></a>
+        <a href="#"><img src="images/tiktok-icon.png" alt="TikTok"></a>
+        <a href="#"><img src="images/instagram-icon.png" alt="Instagram"></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Accordion Functionality
+    const modules = document.querySelectorAll('.module-header');
+    
+    modules.forEach(module => {
+      module.addEventListener('click', () => {
+        const parent = module.parentElement;
+        const content = module.nextElementSibling;
+        
+        // Close all modules
+        document.querySelectorAll('.module-content').forEach(item => {
+          if (item !== content) {
+            item.style.maxHeight = null;
+            item.parentElement.classList.remove('open');
+          }
+        });
+
+        // Toggle current module
+        parent.classList.toggle('open');
+        content.style.maxHeight = parent.classList.contains('open') ? content.scrollHeight + "px" : null;
+      });
+    });
+  </script>
+
+</body>
+</html>
