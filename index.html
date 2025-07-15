@@ -1,275 +1,587 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>I DECIDED Upskill Course</title>
-  <link rel="stylesheet" href="./styles.css" type="text/css">
-  <!-- Google Fonts: Headings and Body -->
+  <!-- Add to head -->
+<link rel="stylesheet" href="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <!-- Header: full-width background with logo and navigation linking to separate pages -->
+ <!-- Header -->
   <header class="header">
     <div class="nav-inner">
-      <div class="logo">
-        <a href="index.html">
-          <img src="images/logo.png" alt="I DECIDED Logo" id="logo">
-        </a>
+      <img src="./images/logo.png" alt="I DECIDED Logo" class="header-logo">
+      <div class="nav-links">
+        <a href="#success">Success Stories</a>
+        <a href="#pricing">Pricing & Investment</a>
+        <a href="#enroll">Reserve Your Seat</a>
       </div>
-      <nav class="nav">
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="news.html">News &amp; Stories</a></li>
-          <li><a href="modules.html">Upskill Course</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="donate.html" class="donate-btn">Donate</a></li>
-        </ul>
-      </nav>
+      <!-- Updated Donate Button -->
+      <button class="donate-btn">Donate</button>
+      <button class="mobile-menu-btn">☰</button>
+    </div>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+      <div class="mobile-nav-links">
+        <a href="#success">Success Stories</a>
+        <a href="#pricing">Pricing & Investment</a>
+        <a href="#enroll">Reserve Your Seat</a>
+        <a href="#about">About</a>
+        <a href="#community">Community</a>
+      </div>
     </div>
   </header>
-  
-  <!-- Hero Section -->
-  <section class="hero">
-    <video autoplay muted loop class="hero-video">
-      <source src="videos/students-collab.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1 class="kinetic-headline">I DECIDED</h1>
-      <p class="tagline">A Blueprint for Clarity, Confidence, and Cashflow</p>
-    </div>
-  </section>
-  
-  <!-- About Section -->
-  <section id="about" class="about color-block">
-    <div class="container">
-      <h2>About I DECIDED</h2>
-      <p>
-        Our Upskill Course is designed specifically for recent high school graduates—cutting through the noise with actionable steps and real-world insights. We help you navigate the challenges of life after matric by providing practical lessons, expert mentorship, and a supportive community.
-      </p>
-      <p>
-        "I DECIDED" isn’t just a course—it’s a movement. We’re here to teach you not only what to do but how to build your own success. In addition to the core course content, our program kickstarts community engagement initiatives. Volunteers and organizations join us to support workshops and real-world skill-building that make a tangible impact.
-      </p>
-      <h3>Our Vision</h3>
-      <p>
-        To empower young graduates with the skills, mindset, and confidence needed to navigate life after school and achieve their dreams.
-      </p>
-      <img src="images/vision.svg" alt="Vision Icon" class="section-icon">
-    </div>
-  </section>
-  
-  <!-- Key Course Takeaways Section (renamed from Modules) -->
-  <section id="takeaways" class="modules module-bg">
-    <div class="container">
-      <h2>Key Course Takeaways &amp; Highlights</h2>
-      <div class="modules-grid">
-        <!-- Takeaway Card 1: Mentorship Mastery -->
-        <div class="module-card">
-          <div class="card-inner">
-            <div class="card-front">
-              <img src="images/mentor-icon.jpg" alt="Mentorship Icon" class="module-icon">
-              <h3>Mentorship Mastery</h3>
-            </div>
-            <div class="card-back">
-              <ul>
-                <li>Discover how mentors accelerate your growth</li>
-                <li>Learn effective networking strategies</li>
-                <li>Build lasting professional relationships</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- Takeaway Card 2: Financial Literacy & Funding -->
-        <div class="module-card">
-          <div class="card-inner">
-            <div class="card-front">
-              <img src="images/money.webp" alt="Finance Icon" class="module-icon">
-              <h3>Financial Literacy &amp; Funding</h3>
-            </div>
-            <div class="card-back">
-              <ul>
-                <li>Master debt avoidance and side hustles</li>
-                <li>Explore funding opportunities and scholarships</li>
-                <li>Manage money wisely</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- Takeaway Card 3: Career Navigation -->
-        <div class="module-card">
-          <div class="card-inner">
-            <div class="card-front">
-              <img src="images/career.webp" alt="Career Icon" class="module-icon">
-              <h3>Career Navigation</h3>
-            </div>
-            <div class="card-back">
-              <ul>
-                <li>Understand job market realities</li>
-                <li>Create standout CV &amp; LinkedIn profiles</li>
-                <li>Chart your unique career path</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- Takeaway Card 4: Social Media & Branding -->
-        <div class="module-card">
-          <div class="card-inner">
-            <div class="card-front">
-              <img src="images/social.jpg" alt="Social Media Icon" class="module-icon">
-              <h3>Social Media &amp; Branding</h3>
-            </div>
-            <div class="card-back">
-              <ul>
-                <li>Create compelling online content</li>
-                <li>Build your personal brand</li>
-                <li>Learn monetization techniques</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- Takeaway Card 5: Pitfalls to Avoid -->
-        <div class="module-card">
-          <div class="card-inner">
-            <div class="card-front">
-              <img src="images/failure.webp" alt="Caution Icon" class="module-icon">
-              <h3>Pitfalls to Avoid</h3>
-            </div>
-            <div class="card-back">
-              <ul>
-                <li>Identify common mistakes</li>
-                <li>Learn strategies to overcome setbacks</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+
+   <!-- ======= UPDATED DONATION MODAL WITH PAYFAST ======= -->
+<div class="modal fade" id="donationModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Make a Donation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
-    </div>
-  </section>
-  
-  <!-- Success Stories Section (Testimonials: Videos + Text) -->
-  <section id="success" class="testimonials">
-    <div class="container">
-      <h2>Success Stories</h2>
-      <!-- Video Testimonials -->
-      <div class="testimonial-carousel">
-        <video controls class="testimonial-video">
-          <source src="videos/testimonial1.mp4" type="video/mp4">
-          Your browser does not support video.
-        </video>
-        <video controls class="testimonial-video">
-          <source src="videos/testimonial2.mp4" type="video/mp4">
-          Your browser does not support video.
-        </video>
-        <video controls class="testimonial-video">
-          <source src="videos/testimonial3.mp4" type="video/mp4">
-          Your browser does not support video.
-        </video>
-        <video controls class="testimonial-video">
-          <source src="videos/testimonial4.mp4" type="video/mp4">
-          Your browser does not support video.
-        </video>
-      </div>
-      <!-- Text Testimonials -->
-      <div class="testimonial-quotes">
-        <h3>Hear From Our Graduates</h3>
-        <div class="quote-carousel">
-          <div class="quote">
-            <blockquote>"This course gave me the tools to start my own barbering business!"</blockquote>
-            <cite>– Caitlin</cite>
+      <div class="modal-body">
+        <form id="donationForm">
+          <div class="mb-3">
+            <input type="text" class="form-control" name="name" placeholder="Full Name" required>
           </div>
-          <div class="quote">
-            <blockquote>"I landed my first job thanks to the CV and LinkedIn tips."</blockquote>
-            <cite>– Thabo</cite>
+          <div class="mb-3">
+            <input type="email" class="form-control" name="email" placeholder="Email Address" required>
           </div>
-          <div class="quote">
-            <blockquote>"The mentorship module changed how I approach networking."</blockquote>
-            <cite>– Lerato</cite>
+          <div class="mb-3">
+            <select class="form-control" name="amount" id="donationAmount" required>
+              <option value="50">R50</option>
+              <option value="100" selected>R100</option>
+              <option value="250">R250</option>
+              <option value="500">R500</option>
+              <option value="custom">Custom Amount</option>
+            </select>
           </div>
-        </div>
+          <div id="customAmountContainer" style="display: none;">
+            <div class="mb-3">
+              <input type="number" class="form-control" name="custom_amount" placeholder="Enter amount in ZAR">
+            </div>
+          </div>
+          <div class="mb-3">
+            <textarea class="form-control" name="note" placeholder="Optional message (Why are you donating?)" rows="3"></textarea>
+          </div>
+        </form>
       </div>
-    </div>
-  </section>
-  
-<!-- Pricing & Investment Section -->
-<section id="pricing">
-  <div class="container">
-    <h2>Pricing &amp; Investment</h2>
-    <p>
-      We offer flexible investment options that secure your spot in our course while integrating you into a vibrant, hands-on community.
-    </p>
-    <div class="pricing-options">
-      <!-- Flexible Investment Card -->
-      <div class="option">
-        <img src="images/investment.jpg" alt="Flexible Investment Icon" class="pricing-icon">
-        <h3>Flexible Investment</h3>
-        <p>
-          Start with a modest R250 deposit and contribute your skills—help at workshops or create social media content—in exchange for enrollment.
-        </p>
-      </div>
-      <!-- Premium Investment Card -->
-      <div class="option">
-        <img src="images/premium.svg" alt="Premium Investment Icon" class="pricing-icon">
-        <h3>Premium Investment</h3>
-        <p>
-          Pay the full fee of R1,500 to gain access to premium mentorship sessions and advanced training, setting you on an accelerated path to success.
-        </p>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="submitDonation">Donate via PayFast</button>
       </div>
     </div>
   </div>
-</section>
+</div>
+
+<!-- Hidden PayFast Form -->
+<form id="payfastDonationForm" action="https://www.payfast.co.za/eng/process" method="post" style="display: none;">
+  <input type="hidden" name="merchant_id" value="30913939">
+  <input type="hidden" name="merchant_key" value="xreimvqbtq652">
+  <input type="hidden" name="return_url" value="https://idecided.co.za/success.html">
+  <input type="hidden" name="cancel_url" value="https://idecided.co.za/cancel.html">
+  <input type="hidden" name="notify_url" value="https://idecided.co.za/notify">
+  
+  <!-- Dynamic fields will be set by JavaScript -->
+  <input type="hidden" name="amount" id="payfastAmount">
+  <input type="hidden" name="item_name" value="Donation to I DECIDED">
+  <input type="hidden" name="name_first" id="payfastFirstName">
+  <input type="hidden" name="name_last" id="payfastLastName">
+  <input type="hidden" name="email_address" id="payfastEmail">
+</form>
+<!-- ======= END UPDATED MODAL ======= -->
+
+  <!-- Carousel - Unchanged -->
+  <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+    <div class="carousel-inner">
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <div class="video-container">
+          <video 
+            src="./New SlideShow/1.mp4" 
+            class="d-block w-100" 
+            muted 
+            playsinline
+            id="video1"
+          ></video>
+          <div class="progress-container">
+            <div class="progress-bar" id="progress1"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 2 -->
+      <div class="carousel-item">
+        <div class="video-container">
+          <video 
+            src="./New SlideShow/2.mp4" 
+            class="d-block w-100" 
+            muted 
+            playsinline
+            id="video2"
+          ></video>
+          <div class="progress-container">
+            <div class="progress-bar" id="progress2"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 3 -->
+      <div class="carousel-item">
+        <div class="video-container">
+          <video 
+            src="./New SlideShow/3.mp4" 
+            class="d-block w-100" 
+            muted 
+            playsinline
+            id="video3"
+          ></video>
+          <div class="progress-container">
+            <div class="progress-bar" id="progress3"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 4 -->
+      <div class="carousel-item">
+        <div class="video-container">
+          <video 
+            src="./New SlideShow/4.mp4" 
+            class="d-block w-100" 
+            muted 
+            playsinline
+            id="video4"
+          ></video>
+          <div class="progress-container">
+            <div class="progress-bar" id="progress4"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 5 -->
+      <div class="carousel-item">
+        <div class="video-container">
+          <video 
+            src="./New SlideShow/5.mp4" 
+            class="d-block w-100" 
+            muted 
+            playsinline
+            id="video5"
+          ></video>
+          <div class="progress-container">
+            <div class="progress-bar" id="progress5"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 6 -->
+      <div class="carousel-item">
+        <div class="video-container">
+          <video 
+            src="./New SlideShow/6.mp4" 
+            class="d-block w-100" 
+            muted 
+            playsinline
+            id="video6"
+          ></video>
+          <div class="progress-container">
+            <div class="progress-bar" id="progress6"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 7 -->
+      <div class="carousel-item">
+        <div class="video-container">
+          <video 
+            src="./New SlideShow/7.mp4" 
+            class="d-block w-100" 
+            muted 
+            playsinline
+            id="video7"
+          ></video>
+          <div class="progress-container">
+            <div class="progress-bar" id="progress7"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 8 -->
+      <div class="carousel-item">
+        <div class="video-container">
+          <video 
+            src="./New SlideShow/8.mp4" 
+            class="d-block w-100" 
+            muted 
+            playsinline
+            id="video8"
+          ></video>
+          <div class="progress-container">
+            <div class="progress-bar" id="progress8"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Prev/Next controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+    
+    <!-- Indicators -->
+<!-- Update the carousel indicators to include all 8 slides -->
+<div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="4" aria-label="Slide 5"></button>
+    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="5" aria-label="Slide 6"></button>
+    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="6" aria-label="Slide 7"></button>
+    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="7" aria-label="Slide 8"></button>
+</div>
+  </div>
+  
+
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title">About I DECIDED</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <p>
+            Our Upskill Course is designed specifically for recent high school graduates—cutting through the noise with actionable steps and real-world insights. We help you navigate the challenges of life after matric by providing practical lessons, expert mentorship, and a supportive community.
+          </p>
+          <p>
+            "I DECIDED" isn’t just a course—it’s a movement. We’re here to teach you not only what to do but how to build your own success. In addition to the core course content, our program kickstarts community engagement initiatives. Volunteers and organizations join us to support workshops and real-world skill-building that make a tangible impact.
+          </p>
+          <h3>Our Vision</h3>
+          <p>
+            To empower young graduates with the skills, mindset, and confidence needed to navigate life after school and achieve their dreams.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Stories Section -->
+  <div class="full-width-bg">
+  <section id="success" class="success-stories">
+<div class="container1">
+        <header>
+            <h1>Success Stories</h1>
+            <p class="subtitle">Discover how our clients transformed their businesses with our solutions. Tap on any video to watch their inspiring journeys.</p>
+        </header>
+
+        <section class="success-stories">
+            <div class="videos-container">
+                <!-- Video 1 -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <video>
+                            <source src="./Testimonials/Wendy1.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-overlay">
+                            <h3 class="video-title">Sarah's E-commerce Success</h3>
+                            <p class="video-description">Increased revenue by 220% in just 6 months with our marketing strategy.</p>
+                        </div>
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 2 -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <video>
+                            <source src="./Testimonials/Wendy2.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-overlay">
+                            <h3 class="video-title">Tech Startup Growth</h3>
+                            <p class="video-description">From garage to $5M valuation in 18 months with our guidance.</p>
+                        </div>
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 3 -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <video>
+                            <source src="./Testimonials/Yolanda.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-overlay">
+                            <h3 class="video-title">Restaurant Revival</h3>
+                            <p class="video-description">Tripled customer base with our innovative digital approach.</p>
+                        </div>
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 4 -->
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <video>
+                            <source src="https://assets.codepen.io/3364143/sample-video-4.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-overlay">
+                            <h3 class="video-title">Fitness App Transformation</h3>
+                            <p class="video-description">Achieved 1M+ downloads with our development and marketing expertise.</p>
+                        </div>
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-footer">
+                <a href="#" class="btn">View More Success Stories</a>
+                <p class="footer-note">Tap on any video to play/pause. Works on all devices.</p>
+            </div>
+        </section>
+    </div>
+  
+  </section>
+</div>
 
 
   
-  <!-- Enrollment Section -->
-  <section id="enroll" class="enroll">
+    <!-- Pricing & Investment Section -->
+  <section id="pricing" class="section">
     <div class="container">
-      <h2>Join the Movement</h2>
-      <p>
-        Take the first step toward a practical, no-nonsense education that prepares you for success. Your future starts here.
+      <h2 class="section-title">Pricing & Investment</h2>
+      <p class="text-center" style="max-width: 700px; margin: 0 auto 2rem;">
+        We offer flexible investment options that secure your spot in our course while integrating you into a vibrant, hands-on community.
       </p>
-      <button class="enroll-button">Enroll Now</button>
+      
+      <div class="pricing-cards">
+        <div class="pricing-card">
+          <h3>Flexible Investment</h3>
+          <span class="price">R250</span>
+          <p>Start with a modest deposit and contribute your skills to secure enrollment</p>
+          <ul class="features">
+            <li>Skills-based enrollment option</li>
+            <li>Help at workshops</li>
+            <li>Create social media content</li>
+            <li>Community support network</li>
+            <li>Full course access</li>
+          </ul>
+          <button class="reserve-btn">Reserve Your Seat</button>
+          
+          <!-- Booking Form for Flexible Investment -->
+          <div class="booking-form" style="display:none; margin-top:20px;">
+            <form action="https://formspree.io/f/xvgrjewa" method="POST">
+              <!-- Hidden Fields -->
+              <input type="hidden" name="_subject" value="New Course Booking - Flexible">
+              <input type="hidden" name="package" value="Flexible Investment">
+              <input type="text" name="_gotcha" style="display:none;"> <!-- Spam protection -->
+              
+              <!-- Visible Fields -->
+              <div class="mb-3">
+                <input type="text" name="name" class="form-control" placeholder="Full Name" required>
+              </div>
+              <div class="mb-3">
+                <input type="email" name="email" class="form-control" placeholder="Email" required>
+              </div>
+              <div class="mb-3">
+                <input type="tel" name="phone" class="form-control" placeholder="Phone Number">
+              </div>
+              <div class="mb-3">
+                <textarea name="message" class="form-control" 
+                          placeholder="What skills do you want to develop?" rows="2"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Submit Booking</button>
+            </form>
+          </div>
+          
+          <form action="https://www.payfast.co.za/eng/process" method="post">
+  <!-- REQUIRED FIELDS -->
+  <input type="hidden" name="merchant_id" value="30913939">
+  <input type="hidden" name="merchant_key" value="xreimvqbtq652">
+  <input type="hidden" name="return_url" value="https://idecided.co.za/success">
+  <input type="hidden" name="cancel_url" value="https://idecided.co.za/cancel">
+  
+  <!-- PRODUCT INFO -->
+  <input type="hidden" name="amount" value="250.00"> <!-- Update amount per product -->
+  <input type="hidden" name="item_name" value="I DECIDED Course - Flexible">
+  
+  <!-- BUYER INFO (Will be filled by user) -->
+  <input type="hidden" name="name_first" value="">
+  <input type="hidden" name="name_last" value="">
+  <input type="hidden" name="email_address" value="">
+  
+  <button type="submit" class="btn btn-success w-100 mt-2">Pay with PayFast</button>
+</form>
+        </div>
+        
+        <div class="pricing-card">
+          <h3>Premium Investment</h3>
+          <span class="price">R1,500</span>
+          <p>Pay the full fee for premium mentorship and accelerated success</p>
+          <ul class="features">
+            <li>Full course access</li>
+            <li>Premium mentorship sessions</li>
+            <li>Advanced training modules</li>
+            <li>Priority workshop access</li>
+            <li>Career acceleration program</li>
+          </ul>
+          <button class="reserve-btn">Reserve Your Seat</button>
+          
+          <!-- Booking Form for Premium Investment -->
+          <div class="booking-form" style="display:none; margin-top:20px;">
+            <form action="https://formspree.io/f/xvgrjewa" method="POST">
+              <!-- Hidden Fields -->
+              <input type="hidden" name="_subject" value="New Course Booking - Premium">
+              <input type="hidden" name="package" value="Premium Investment">
+              <input type="text" name="_gotcha" style="display:none;"> <!-- Spam protection -->
+              
+              <!-- Visible Fields -->
+              <div class="mb-3">
+                <input type="text" name="name" class="form-control" placeholder="Full Name" required>
+              </div>
+              <div class="mb-3">
+                <input type="email" name="email" class="form-control" placeholder="Email" required>
+              </div>
+              <div class="mb-3">
+                <input type="tel" name="phone" class="form-control" placeholder="Phone Number">
+              </div>
+              <div class="mb-3">
+                <textarea name="message" class="form-control" 
+                          placeholder="What skills do you want to develop?" rows="2"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Submit Booking</button>
+            </form>
+          </div>
+          
+          <!-- PayFast Payment Button -->
+          <form class="payfast-payment-form" action="https://www.payfast.co.za/eng/process" method="post">
+  <!-- REQUIRED FIELDS -->
+  <input type="hidden" name="merchant_id" value="30913939">
+  <input type="hidden" name="merchant_key" value="xreimvqbtq652">
+  <input type="hidden" name="return_url" value="https://idecided.co.za/success">
+  <input type="hidden" name="cancel_url" value="https://idecided.co.za/cancel">
+  
+  <!-- PRODUCT INFO -->
+  <input type="hidden" name="amount" value="250.00"> <!-- Update amount per product -->
+  <input type="hidden" name="item_name" value="I DECIDED Course - Flexible">
+  
+  <!-- BUYER INFO (Will be filled by user) -->
+  <input type="hidden" name="name_first" value="">
+  <input type="hidden" name="name_last" value="">
+  <input type="hidden" name="email_address" value="">
+  
+  <button type="submit" class="btn btn-success w-100 mt-2">Pay with PayFast</button>
+</form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Workshop Registration Modal -->
+  <div class="modal fade" id="workshopModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Register for Workshop</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="workshop-registration-form" action="https://formspree.io/f/xvgrjewa" method="POST">
+            <input type="hidden" name="_subject" value="Workshop Registration">
+            <input type="hidden" name="workshop" id="workshop-name" value="">
+            <input type="text" name="_gotcha" style="display:none;">
+            
+            <div class="mb-3">
+              <label class="form-label">Full Name</label>
+              <input type="text" name="name" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" name="email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Phone Number</label>
+              <input type="tel" name="phone" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Workshop</label>
+              <input type="text" id="modal-workshop-name" class="form-control" readonly>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <section id="workshops" class="section">
+    <div class="container">
+      <h2 class="section-title">Upcoming Workshops</h2>
+      <div class="workshop-list row">
+        <!-- Will be populated by JS -->
+      </div>
     </div>
   </section>
   
-<!-- Add this in your index.html where the community section exists -->
+  <!-- Community Section -->
+  <section id="community" class="section">
+    <div class="container">
+      <h2 class="section-title">Community Engagement</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+          <p>
+            Beyond the classroom, we host dynamic pop-up events—from free haircuts to barista training—that bring families, professionals, and graduates together for hands-on workshops and real-world skill-building.
+          </p>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
 <section id="community">
   <div class="container">
-    <h2>Community Engagement</h2>
     <div class="carousel-container">
       <button class="carousel-arrow left-arrow" aria-label="Previous">
         <svg width="24" height="40" viewBox="0 0 24 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M23 1L2 20L23 39" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M23 1L2 20L23 39" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
         </svg>
       </button>
       
       <div class="community-posts-carousel">
         <!-- Blog Post 1 -->
         <a href="news.html#post1" class="community-post">
-          <img src="images/community1.jpg" alt="Blog Post 1">
+          <img src="./images/community1.jpg" alt="Blog Post 1">
           <h3>Empowering Local Talent</h3>
           <p>Discover how our community workshops are transforming lives through hands-on training and local collaboration.</p>
           <p class="post-meta">Posted on Jan 15, 2025</p>
         </a>
         <!-- Blog Post 2 -->
         <a href="news.html#post2" class="community-post">
-          <img src="images/community2.webp" alt="Blog Post 2">
+          <img src="./images/community2.webp" alt="Blog Post 2">
           <h3>Success Through Skill Sharing</h3>
           <p>Our recent pop-up event brought together professionals and graduates for an inspiring exchange of ideas.</p>
           <p class="post-meta">Posted on Feb 02, 2025</p>
         </a>
         <!-- Blog Post 3 -->
         <a href="news.html#post3" class="community-post">
-          <img src="images/community3.jpeg" alt="Blog Post 3">
+          <img src="./images/community3.jpeg" alt="Blog Post 3">
           <h3>Innovation in Education</h3>
           <p>Explore the new trends in community-based learning that are reshaping the future of education.</p>
           <p class="post-meta">Posted on Mar 10, 2025</p>
         </a>
         <!-- Blog Post 4 -->
         <a href="news.html#post4" class="community-post">
-          <img src="images/mentor-icon.jpg" alt="Blog Post 4">
+          <img src="./images/mentor-icon.jpg" alt="Blog Post 4">
           <h3>Innovation in Education</h3>
           <p>Explore the new trends in community-based learning that are reshaping the future of education.</p>
           <p class="post-meta">Posted on Mar 10, 2025</p>
@@ -277,112 +589,181 @@
       </div>
       <button class="carousel-arrow right-arrow" aria-label="Next">
         <svg width="24" height="40" viewBox="0 0 24 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1L22 20L1 39" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M1 1L22 20L1 39" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
         </svg>
       </button>
     </div>
+
+    <section id="donate" class="section">
+  <div class="container">
+    <h2>Make a Donation</h2>
+    <form id="donation-form" action="https://formspree.io/f/xvgrjewa" method="POST">
+      <input type="hidden" name="_subject" value="New Donation">
+      
+      <div class="mb-3">
+        <input type="text" name="name" class="form-control" placeholder="Full Name" required>
+      </div>
+      <div class="mb-3">
+        <input type="email" name="email" class="form-control" placeholder="Email" required>
+      </div>
+      <div class="mb-3">
+        <select name="amount" class="form-control">
+          <option value="50">R50</option>
+          <option value="100" selected>R100</option>
+          <option value="250">R250</option>
+          <option value="500">R500</option>
+          <option value="custom">Custom Amount</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+    </form>
+  </div>
     
     <p class="community-description">
       Beyond the classroom, we host dynamic pop-up events—from free haircuts to barista training—that bring families, professionals, and graduates together for hands-on workshops and real-world skill-building. And if cash is tight, you can trade your talents (like graphic design or digital marketing) to secure your enrollment.
     </p>
+
+    <div class="community-highlight">
+        <h2>73% Employment Rate</h2>
+        <p>within 6 months of completing our program (2023 results)</p>
+        <button class="reserve-btn" style="margin-top: 2rem;">Join Our Community</button>
+      </div>
   </div>
+
+  
 </section>
 
-<!-- Volunteer Trigger Section -->
-<section id="volunteer" class="volunteer-trigger">
-  <div class="container centered-section">
-    <h2>Powering Community Impact</h2>
-    <br>
-
-    <div class="volunteer-callout">
-      <p>Our program thrives through skilled volunteers and organizations sharing expertise. By offering practical workshops (barbering, barista training, digital skills), we create:</p>
-      <ul class="impact-list">
-        <li>✅ Job-ready graduates through hands-on learning</li>
-        <li>✅ Local business exposure via workshop partnerships</li>
-        <li>✅ 73% employment rate within 6 months (2023 results)</li>
-      </ul>
-      
-    </div>
-    <button class="volunteer-btn" onclick="showVolunteerForm()">Join Our Skill Revolution</button>
-  </div>
-</section>
 
 
   
-  <!-- Trusted Partners Section -->
-  <section class="trusted-partners">
+  <!-- Partners Section -->
+  <section class="section" style="background-color: #f8f9fa;">
     <div class="container">
-      <h2>Trusted By</h2>
-      <div class="partner-grid">
-        <img src="images/FAA_LOGO.avif" alt="FAA NGO">
-        <img src="images/Intle_Logo.avif" alt="Intle College">
-        <img src="images/Massimo_Logo.png" alt="Local Business">
+      <h2 class="section-title">Trusted By</h2>
+      <div class="partners">
+        <img src="./images/FAA_LOGO.avif" alt="FAA NGO" class="partner-logo">
+        <img src="./images/Intle_Logo.avif" alt="Intle College" class="partner-logo">
+        <img src="./images/Massimo_Logo.png" alt="Local Business" class="partner-logo">
       </div>
     </div>
   </section>
   
-  <!-- Volunteer Modal -->
-  <div id="volunteerModal" class="volunteer-modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeVolunteerForm()">&times;</span>
-      <h2>Skill Contributor Application</h2>
-      <form id="volunteerForm">
-        <div class="form-group">
-          <input type="text" id="firstName" placeholder="First Name" required>
-          <input type="text" id="lastName" placeholder="Last Name" required>
-        </div>
-        <div class="form-group">
-          <input type="tel" id="contact" placeholder="Contact Number" required>
-          <select id="applicantType" required>
-            <option value="">Individual/Organization</option>
-            <option value="individual">Individual</option>
-            <option value="organization">Organization</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <select id="referralSource" required>
-            <option value="">How did you hear about us?</option>
-            <option value="social-media">Social Media</option>
-            <option value="workshop">Workshop Event</option>
-            <option value="word-of-mouth">Word of Mouth</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <textarea id="skills" placeholder="What skills/services can you offer? (e.g., Haircutting, Career Coaching, Venue Space)" required></textarea>
-        </div>
-        <button type="submit">Submit Application</button>
+  <!-- Newsletter Section -->
+  <section class="newsletter">
+    <div class="container">
+      <h2 class="section-title">Shape Your Future</h2>
+      <p class="text-center">Get free resources, workshop invites, and success stories straight to your inbox.</p>
+      
+      <form class="newsletter-form">
+        <input type="email" placeholder="Email Address" class="newsletter-input" required>
+        <button type="submit" class="newsletter-btn">Subscribe</button>
       </form>
     </div>
-  </div>
+  </section>
   
-  <!-- Newsletter Section (Shape Your Future) -->
-  <section id="newsletter" class="newsletter">
-    <div class="container">
-      <div class="newsletter-content">
-        <h2>Shape Your Future</h2>
-        <p>Get free resources, workshop invites, and success stories straight to your inbox.</p>
-        <form class="subscribe-form">
-          <input type="text" placeholder="Your Name" required>
-          <input type="email" placeholder="Email Address" required>
-          <button type="submit">Get Started →</button>
-        </form>
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="./images/logo.png" alt="I DECIDED Logo" class="footer-logo">
+        <p>Empowering young graduates with skills for success</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/Idecided.co.za" target="_blank" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96C18.34 21.21 22 17.06 22 12.06C22 6.53 17.5 2.04 12 2.04Z" />
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/idecided.co.za/" target="_blank" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+            </svg>
+          </a>
+          <a href="https://x.com/idecided.co.za" target="_blank" aria-label="Twitter/X">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z" />
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/company/ldecided" target="_blank" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M18.5,18.5V13.2A3.26,3.26 0 0,0 15.24,9.94C14.39,9.94 13.4,10.46 12.92,11.24V10.13H10.13V18.5H12.92V13.57C12.92,12.8 13.54,12.17 14.31,12.17A1.4,1.4 0 0,1 15.71,13.57V18.5H18.5M6.88,8.56A1.68,1.68 0 0,0 8.56,6.88C8.56,5.95 7.81,5.19 6.88,5.19A1.69,1.69 0 0,0 5.19,6.88C5.19,7.81 5.95,8.56 6.88,8.56M8.27,18.5V10.13H5.5V18.5H8.27Z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-links-group">
+        <h3>Quick Links</h3>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#success">Success Stories</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#community">Community</a>
+        </div>
+      </div>
+      
+      <div class="footer-links-group">
+        <h3>Contact</h3>
+        <div class="footer-links">
+          <a href="mailto:info@idecided.org">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />
+            </svg>
+            info@idecided.org
+          </a>
+          <a href="tel:+27123456789">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z" />
+            </svg>
+            +27 12 345 6789
+          </a>
+          <a href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+            </svg>
+            Cape Town, South Africa
+          </a>
+        </div>
       </div>
     </div>
-  </section>  
-  
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
+    
+    <div class="copyright">
       <p>&copy; 2025 I DECIDED. All rights reserved.</p>
-      <div class="social-icons">
-        <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
-        <a href="#"><img src="images/tiktok.png" alt="TikTok"></a>
-        <a href="#"><img src="images/instagram.svg" alt="Instagram"></a>
-      </div>
     </div>
-  </footer>
+  </div>
+</footer>
+
+<script>
+
+// Sample workshop data
+const workshops = [
+  { date: "2025-07-15", title: "Barista Training", location: "Cape Town" },
+  { date: "2025-07-22", title: "Digital Marketing Basics", location: "Online" }
+];
+
+const container = document.querySelector('.workshop-list');
+workshops.forEach(ws => {
+  container.innerHTML += `
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5>${ws.title}</h5>
+          <p>${new Date(ws.date).toDateString()} | ${ws.location}</p>
+          <button class="btn btn-sm btn-outline-primary register-btn" 
+                  data-workshop="${ws.title}">
+            Register
+          </button>
+        </div>
+      </div>
+    </div>`;
+});
+
+document.querySelector('#register-btn').addEventListener('click', () => {
+  alert('Registration system would open here');
+});
+</script>
   
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
   <script src="./main.js"></script>
 </body>
 </html>
-```

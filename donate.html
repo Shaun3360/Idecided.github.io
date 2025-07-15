@@ -1,215 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Donate - I DECIDED</title>
-  <link rel="stylesheet" href="styles.css" type="text/css">
-  <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support the Movement - I DECIDED</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Header -->
-  <header class="header">
-    <div class="nav-inner">
-      <div class="logo">
-        <a href="index.html">
-          <img src="images/logo.png" alt="I DECIDED Logo">
-        </a>
-      </div>
-      <nav class="nav">
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="news.html">News</a></li>
-          <li><a href="modules.html">Course</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="donate.html" class="donate-btn active">Donate</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Donation Content -->
-  <main class="donate-page">
-    <section class="donate-hero color-block">
-      <div class="container">
-        <h1>Fuel the Movement</h1>
-        <p class="hero-subhead">Your support empowers recent graduates to build skills, confidence, and sustainable futures</p>
-      </div>
-    </section>
-
-    <section class="impact-section">
-      <div class="container">
-        <div class="impact-grid">
-          <div class="impact-card">
-            <h2><span class="highlight">Why Give?</span></h2>
-            <p>Every rand helps us provide practical skills training, mentorship, and job placement support to youth navigating life after matric.</p>
-            <div class="impact-stats">
-              <div class="stat">
-                <div class="stat-number">85%</div>
-                <div class="stat-label">Graduates employed<br>within 6 months</div>
-              </div>
-              <div class="stat">
-                <div class="stat-number">1:3</div>
-                <div class="stat-label">Mentor to student<br>ratio</div>
-              </div>
+    <!-- Navigation -->
+    <nav class="sticky-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">I DECIDED</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
             </div>
-          </div>
+        </div>
+    </nav>
 
-          <div class="donation-methods">
-            <!-- South African Donations -->
-            <article class="method-card">
-              <h3>South African Donations</h3>
-              <div class="payment-option">
-                <h4>Bank Transfer</h4>
-                <ul class="bank-details">
-                  <li>Bank: Investec</li>
-                  <li>Account: 10012171480</li>
-                  <li>Branch: 58 01 05</li>
-                </ul>
-              </div>
-              <div class="payment-option">
-                <h4>Instant Payments</h4>
-                <div class="payment-badges">
-                  <a href="#" class="payment-link" style="background-color: #3BB1BF;">
-                    <img src="images/payfast-icon.png" alt="PayFast">
-                  </a>
-                  <a href="#" class="payment-link" style="background-color: #FFC857;">
-                    <img src="images/snapscan-icon.png" alt="SnapScan">
-                  </a>
+    <!-- Donation Section -->
+    <section class="donation-section">
+        <div class="container">
+            <h2>Fuel the Revolution</h2>
+            <div class="donation-options">
+                <div class="donation-card">
+                    <h3>SnapScan</h3>
+                    <img src="snapscan-qr-placeholder.png" alt="SnapScan QR" class="qr-code">
+                    <p>Scan to support</p>
                 </div>
-              </div>
-            </article>
-
-            <!-- International Donations -->
-            <article class="method-card">
-              <h3>Global Support</h3>
-              <div class="payment-option">
-                <h4>Digital Wallets</h4>
-                <div class="payment-badges">
-                  <a href="#" class="payment-link" style="background-color: #4CAF50;">
-                    <img src="images/paypal-icon.png" alt="PayPal">
-                  </a>
-                  <a href="#" class="payment-link" style="background-color: #3BB1BF;">
-                    <img src="images/cashapp-icon.png" alt="CashApp">
-                  </a>
+                <div class="donation-card">
+                    <h3>PayPal</h3>
+                    <img src="paypal-qr-placeholder.png" alt="PayPal QR" class="qr-code">
+                    <p>Global support</p>
                 </div>
-              </div>
-              <div class="payment-option">
-                <h4>Cryptocurrency</h4>
-                <div class="crypto-qr">
-                  <img src="images/crypto-qr.png" alt="Crypto QR Code">
-                  <p>BTC/ETH/USDT accepted</p>
-                </div>
-              </div>
-            </article>
-          </div>
+            </div>
+            <a href="index.html" class="back-link">← Return to Main Site</a>
         </div>
-      </div>
     </section>
 
-<!-- Add this section below the donate-hero section -->
-<section class="calculator-section">
-    <div class="container">
-      <h2>See Your Impact</h2>
-      <div class="calculator-card">
-        <div class="calculator-side">
-          <div class="donation-type-toggle">
-            <button class="toggle-btn active" data-type="once">One-Time</button>
-            <button class="toggle-btn" data-type="monthly">Monthly</button>
-          </div>
-
-          <div class="amount-presets">
-            <button class="amount-btn" data-amount="100">R100</button>
-            <button class="amount-btn" data-amount="250">R250</button>
-            <button class="amount-btn" data-amount="500">R500</button>
-            <button class="amount-btn" data-amount="1000">R1,000</button>
-          </div>
-  
-          <div class="custom-amount">
-            <input type="number" id="customAmount" placeholder="Enter custom amount">
-            <span class="currency">ZAR</span>
-          </div>
-  
-          <div class="impact-display">
-            <div class="impact-item" data-impact="100">
-              <div class="impact-icon">🎓</div>
-              <p>Funds <strong>1 workshop</strong> materials</p>
-            </div>
-            <div class="impact-item" data-impact="500">
-              <div class="impact-icon">✂️</div>
-              <p>Sponsors <strong>1 student's</strong> toolkit</p>
-            </div>
-            <div class="impact-item" data-impact="1000">
-              <div class="impact-icon">👥</div>
-              <p>Covers <strong>10 mentorship</strong> sessions</p>
-            </div>
-          </div>
-        </div>
-  
-        <div class="summary-side">
-          <h3>Your Contribution</h3>
-          <div class="summary-amount">
-            <span id="calculatedAmount">0</span>
-          </div>
-          <button class="donate-now-btn">Donate Now</button>
-          <p class="tax-info">Tax deductible in South Africa</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-
-
-
-
-
-    <!-- Sustainability Pledge -->
-    <section class="pledge-section module-bg">
-      <div class="container">
-        <h2>Our Financial Promise</h2>
-        <div class="pledge-grid">
-          <div class="pledge-card">
-            <div class="pledge-icon">💯</div>
-            <h3>100% Transparency</h3>
-            <p>Monthly financial reports published for all donors</p>
-          </div>
-          <div class="pledge-card">
-            <div class="pledge-icon">📈</div>
-            <h3>80% Program Impact</h3>
-            <p>Majority of funds go directly to student programs</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section class="donate-newsletter">
-      <div class="container">
-        <h2>Stay Connected</h2>
-        <form class="newsletter-form">
-          <div class="form-group">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Email Address" required>
-          </div>
-          <button type="submit" class="cta-button">Get Updates →</button>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; 2025 I DECIDED. Empowering Futures.</p>
-      <div class="social-icons">
-        <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
-        <a href="#"><img src="images/tiktok.png" alt="TikTok"></a>
-        <a href="#"><img src="images/instagram.svg" alt="Instagram"></a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="main.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
