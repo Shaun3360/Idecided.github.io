@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    // GitHub OAuth proxy for Decap CMS
+    window.addEventListener('load', function() {
+      const hash = window.location.hash.substr(1);
+      const params = new URLSearchParams(hash);
+      const accessToken = params.get('access_token');
+      
+      if (accessToken) {
+        window.opener.postMessage(
+          JSON.stringify({ 
+            type: 'authorization', 
+            data: { token: accessToken } 
+          }), 
+          window.location.origin
+        );
+        window.close();
+      }
+    });
+  </script>
+</head>
+<body>
+  Authenticating...
+</body>
+</html>

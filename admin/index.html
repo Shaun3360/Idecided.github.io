@@ -384,47 +384,12 @@
                 </div>
             </div>
 
-            <!-- Blog Editor -->
-            <section class="admin-section">
-                <h2><i class="fas fa-edit"></i> Create New Blog Post</h2>
-                <form id="blog-form">
-                    <div class="form-group">
-                        <label for="blog-title">Title</label>
-                        <input type="text" id="blog-title" class="form-control" placeholder="Enter blog title">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="blog-category">Category</label>
-                        <select id="blog-category" class="form-control">
-                            <option value="">Select a category</option>
-                            <option value="success">Success Stories</option>
-                            <option value="workshops">Workshops</option>
-                            <option value="updates">Program Updates</option>
-                            <option value="tips">Career Tips</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="blog-image">Featured Image</label>
-                        <input type="file" id="blog-image" class="form-control">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="blog-content">Content</label>
-                        <textarea id="blog-content" class="form-control" placeholder="Write your blog content here..."></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="blog-tags">Tags (comma separated)</label>
-                        <input type="text" id="blog-tags" class="form-control" placeholder="e.g., career, skills, workshop">
-                    </div>
-                    
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save & Publish</button>
-                        <button type="button" class="btn btn-secondary"><i class="fas fa-file-alt"></i> Save Draft</button>
-                    </div>
-                </form>
-            </section>
+        
+            <!-- Blog Management Section -->
+        <section class="admin-section">
+             <h2><i class="fas fa-edit"></i> Blog Management</h2>
+            <div id="ncms-root"></div>
+        </section>
 
             <!-- Recent Blog Posts -->
             <section class="admin-section">
@@ -495,6 +460,18 @@
     </div>
 
     <script>
+
+  // Initialize Decap CMS
+  CMS.registerPreviewStyle("/styles.css");
+  CMS.init({
+    config: {
+      load_config_file: true, // Loads config from admin/config.yml
+      backend: {
+        auth_scope: "repo" // Required for GitHub integration
+      }
+    }
+  });
+
         // Basic form handling
         document.getElementById('blog-form').addEventListener('submit', function(e) {
             e.preventDefault();
