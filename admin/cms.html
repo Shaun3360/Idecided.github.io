@@ -4,9 +4,44 @@
   <meta charset="utf-8">
   <title>Content Manager</title>
   <script>
+    // Initialize authentication state
+    let authProcessed = false;
+    
+    // Message listener for token
+    window.addEventListener('message', (event) => {
+      if (event.data && event.data.type === 'authorization') {
+        console.log('Received authorization token');
+        authProcessed = true;
+        
+        // Store token in localStorage
+        localStorage.setItem('netlify-cms-user', JSON.stringify({
+          token: event.data.data.token,
+          provider: 'github'
+        }));
+        
+        // Initialize CMS after token receipt
+        if (typeof CMS !== 'undefined') {
+          console.log('Initializing CMS with token');
+          CMS.init({ 
+            config: "config.yml" 
+          });
+        } else {
+          console.error('CMS not available after token receipt');
+        }
+      }
+    });
+
     // Simple authentication check
     if (!localStorage.getItem('admin-authenticated')) {
       window.location.href = 'login.html';
+    } else if (localStorage.getItem('netlify-cms-user')) {
+      // User already has token, initialize immediately
+      console.log('User already authenticated, initializing CMS');
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof CMS !== 'undefined') {
+          CMS.init({ config: "config.yml" });
+        }
+      });
     }
   </script>
 </head>
@@ -16,5 +51,27 @@
   
   <!-- Load CMS script from CDN -->
   <script src="https://unpkg.com/decap-cms@3.8.0/dist/decap-cms.js"></script>
+  
+  <script>
+    // Initialize CMS if we have a token but no message was received
+    document.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('netlify-cms-user') && !authProcessed) {
+        console.log('Initializing CMS from existing token');
+        if (typeof CMS !== 'undefined') {
+          CMS.init({ config: "config.yml" });
+        }
+      }
+    });
+
+    // Fallback initialization after timeout
+    setTimeout(() => {
+      if (!document.querySelector('#nc-root').hasChildNodes() && 
+          localStorage.getItem('netlify-cms-user') &&
+          typeof CMS !== 'undefined') {
+        console.log('Fallback CMS initialization');
+        CMS.init({ config: "config.yml" });
+      }
+    }, 3000);
+  </script>
 </body>
 </html>

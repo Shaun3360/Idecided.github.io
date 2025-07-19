@@ -4,20 +4,45 @@
   <meta charset="utf-8">
   <title>Auth Redirect</title>
   <script>
-    // Minimal working version used by most Decap CMS sites
     window.addEventListener('load', function() {
-      window.opener.postMessage({
-        type: 'authorization',
-        data: {
-          token: window.location.href.match(/access_token=([^&]+)/)[1],
-          provider: 'github'
-        }
-      }, window.location.origin);
-      window.close();
+      // Extract token from URL
+      const tokenMatch = window.location.href.match(/access_token=([^&]+)/);
+      if (tokenMatch && tokenMatch[1]) {
+        const token = tokenMatch[1];
+        
+        // Send token to parent window
+        window.opener.postMessage({
+          type: 'authorization',
+          data: {
+            token: token,
+            provider: 'github'
+          }
+        }, window.location.origin);
+        
+        // Confirm receipt before closing
+        const confirmInterval = setInterval(() => {
+          if (window.opener.closed) {
+            clearInterval(confirmInterval);
+            window.close();
+          }
+        }, 300);
+        
+        // Fallback close after 3 seconds
+        setTimeout(() => {
+          window.close();
+        }, 3000);
+      } else {
+        console.error('Token not found in URL');
+        window.close();
+      }
     });
   </script>
 </head>
 <body>
-  <p>Authentication complete. You can close this window.</p>
+  <div style="text-align: center; padding: 50px; font-family: sans-serif;">
+    <h2>Authentication Successful</h2>
+    <p>This window will close automatically</p>
+    <p><small>If it doesn't close, you may manually close this window</small></p>
+  </div>
 </body>
 </html>
