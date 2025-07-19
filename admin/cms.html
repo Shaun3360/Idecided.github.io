@@ -1,49 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Content Manager</title>
-    <style>
-        /* Minimal CSS to prevent conflicts */
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-        #nc-root {
-            height: 100vh;
-        }
-    </style>
-    <script>
-        // Authentication check - must be in HEAD to run first
-        if (!localStorage.getItem('admin-authenticated')) {
-            localStorage.setItem('cms-redirect', window.location.href);
-            window.location.href = 'login.html';
-        }
-    </script>
+  <meta charset="utf-8">
+  <title>Content Manager</title>
+  <script>
+    // Simple authentication check
+    if (!localStorage.getItem('admin-authenticated')) {
+      window.location.href = 'login.html';
+    }
+  </script>
 </head>
 <body>
-    <!-- ONLY this element - no wrappers -->
-    <div id="nc-root"></div>
-
-    <!-- Load CMS script AFTER mount point -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    
-    <script>
-        // Initialize IMMEDIATELY after script load
-        if (typeof CMS !== 'undefined') {
-            CMS.init({ 
-                config: "config.yml" 
-            });
-        } else {
-            document.getElementById('nc-root').innerHTML = `
-                <div style="padding:20px;text-align:center">
-                    <h2>CMS Failed to Load</h2>
-                    <button onclick="window.location.reload()">Reload</button>
-                </div>
-            `;
-        }
-    </script>
+  <!-- ONLY this element - no wrappers, no styles -->
+  <div id="nc-root"></div>
+  
+  <!-- Load CMS script from CDN -->
+  <script src="https://unpkg.com/decap-cms@3.8.0/dist/decap-cms.js"></script>
 </body>
 </html>

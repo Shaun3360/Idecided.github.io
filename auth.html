@@ -2,93 +2,22 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Authentication Redirect</title>
+  <title>Auth Redirect</title>
   <script>
-    // Enhanced debugging with scope verification
-    console.log('[auth.html] Starting authentication processing');
-    
-    function sendToParent(message) {
-      if (window.opener) {
-        window.opener.postMessage({
-          type: 'auth-log',
-          message: message
-        }, '*');
-      }
-    }
-
-    try {
-      sendToParent('Authentication window opened');
-      
-      // Capture token AND scopes from URL
-      const hash = window.location.hash.substring(1);
-      const params = new URLSearchParams(hash);
-      const accessToken = params.get('access_token');
-      const scope = params.get('scope');  // Capture scopes
-      
-      if (accessToken) {
-        sendToParent(`Access token found (scopes: ${scope || 'none'})`);
-        console.log('Access token:', accessToken);
-        console.log('Scopes:', scope);
-        
-        // Verify critical scopes
-        const hasRepoScope = scope && scope.includes('repo');
-        const hasUserScope = scope && scope.includes('user');
-        
-        if (!hasRepoScope || !hasUserScope) {
-          sendToParent(`MISSING SCOPES: repo=${hasRepoScope}, user=${hasUserScope}`);
-          throw new Error(`Insufficient scopes: ${scope}`);
+    // Minimal working version used by most Decap CMS sites
+    window.addEventListener('load', function() {
+      window.opener.postMessage({
+        type: 'authorization',
+        data: {
+          token: window.location.href.match(/access_token=([^&]+)/)[1],
+          provider: 'github'
         }
-        
-        // Send token to parent window
-        window.opener.postMessage({
-          type: 'authorization',
-          data: {
-            token: accessToken,
-            provider: 'github',
-            scope: scope  // Include scopes for verification
-          }
-        }, window.location.origin);
-        
-        sendToParent('Token sent to parent window');
-      } else {
-        // Check for OAuth errors
-        const error = params.get('error');
-        const errorDesc = params.get('error_description');
-        
-        if (error) {
-          sendToParent(`GitHub Error: ${error} - ${errorDesc}`);
-          throw new Error(`GitHub OAuth error: ${error}: ${errorDesc}`);
-        } else {
-          sendToParent('No access token found in URL');
-          console.error('Token not found in URL:', window.location.href);
-        }
-      }
-    } catch (e) {
-      sendToParent('CRITICAL ERROR: ' + e.message);
-      console.error('Authentication failed:', e);
-      
-      // Show error to user
-      document.body.innerHTML = `
-        <div style="padding: 20px; text-align: center; color: #d32f2f;">
-          <h3>Authentication Failed</h3>
-          <p>${e.message}</p>
-          <p>Contact support if this error persists</p>
-        </div>
-      `;
-      return; // Prevent window close
-    }
-    
-    // Close window after processing
-    setTimeout(() => {
-      sendToParent('Closing authentication window');
+      }, window.location.origin);
       window.close();
-    }, 2000);
+    });
   </script>
 </head>
 <body>
-  <div style="padding: 20px; text-align: center;">
-    <h3>Processing Authentication...</h3>
-    <p>This window will close automatically</p>
-  </div>
+  <p>Authentication complete. You can close this window.</p>
 </body>
 </html>
