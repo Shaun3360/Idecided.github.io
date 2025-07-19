@@ -59,37 +59,27 @@
   <script src="https://unpkg.com/decap-cms@3.8.0/dist/decap-cms.js"></script>
   
   <script>
-    // Manual login button handler
-    document.getElementById('github-login').addEventListener('click', () => {
-      // Clear any previous state
-      localStorage.removeItem('netlify-cms-user');
-      
-      // Open authentication window
-      const authWindow = window.open(
-        'https://github.com/login/oauth/authorize?client_id=Ov23liVjiXTYlKwvNl7y&scope=repo,user&redirect_uri=https://idecided.co.za/auth.html',
-        'github-auth',
-        'width=600,height=600'
-      );
-      
-      // Poll for window close
-      const checkClosed = setInterval(() => {
-        if (authWindow.closed) {
-          clearInterval(checkClosed);
-          document.getElementById('auth-status').textContent = 'Authentication completed. Loading content...';
-          setTimeout(() => {
-            window.location.reload();
-          }, 2000);
-        }
-      }, 500);
-    });
-    
-    // If we have a token but CMS didn't initialize
-    setTimeout(() => {
-      if (localStorage.getItem('netlify-cms-user') && 
-          !document.querySelector('#nc-root > div > div')) {
+document.getElementById('github-login').addEventListener('click', () => {
+  const vercelUrl = "https://idecided-auth-3po9dayb8-shawns-projects-bd4c3171.vercel.app/api/auth";
+  const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=Ov23liVjiXTYlKwvNl7y&scope=repo,user&redirect_uri=${encodeURIComponent(vercelUrl)}`;
+  
+  const authWindow = window.open(
+    githubAuthUrl,
+    'github-auth',
+    'width=600,height=600'
+  );
+  
+  // Check if window closed
+  const checkClosed = setInterval(() => {
+    if (authWindow.closed) {
+      clearInterval(checkClosed);
+      document.getElementById('auth-status').textContent = 'Authentication completed. Loading content...';
+      setTimeout(() => {
         window.location.reload();
-      }
-    }, 3000);
-  </script>
+      }, 2000);
+    }
+  }, 500);
+});
+</script>
 </body>
 </html>

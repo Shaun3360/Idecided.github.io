@@ -5,14 +5,21 @@
   <title>Auth Redirect</title>
   <script>
     window.addEventListener('load', function() {
-      // Extract token from URL
+      // Check for error in URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const error = urlParams.get('error');
+      
+      if (error) {
+        showError(`GitHub Error: ${error}`);
+        return;
+      }
+      
+      // Extract token from URL hash
       const hash = window.location.hash.substring(1);
-      const params = new URLSearchParams(hash);
-      const token = params.get('access_token');
+      const tokenParams = new URLSearchParams(hash);
+      const token = tokenParams.get('access_token');
       
       if (token) {
-        console.log('GitHub token received');
-        
         // Send token to parent window
         if (window.opener) {
           window.opener.postMessage({
@@ -20,22 +27,31 @@
             token: token
           }, 'https://idecided.co.za');
         }
-        
-        // Close window after 1 second
-        setTimeout(() => {
-          window.close();
-        }, 1000);
+        showSuccess();
       } else {
-        console.error('Token not found in URL');
-        document.body.innerHTML = `
-          <div style="padding: 20px; text-align: center; color: #d32f2f;">
-            <h3>Authentication Failed</h3>
-            <p>No access token received from GitHub</p>
-            <p>Please try again or contact support</p>
-          </div>
-        `;
+        showError('No access token received from GitHub');
       }
     });
+    
+    function showError(message) {
+      document.body.innerHTML = `
+        <div class="container error">
+          <h3>Authentication Failed</h3>
+          <p>${message}</p>
+          <p>Please try again or contact support</p>
+        </div>
+      `;
+    }
+    
+    function showSuccess() {
+      document.body.innerHTML = `
+        <div class="container success">
+          <h3>Authentication Successful</h3>
+          <p>You can close this window</p>
+        </div>
+      `;
+      setTimeout(() => window.close(), 1000);
+    }
   </script>
   <style>
     body {
@@ -55,6 +71,8 @@
       text-align: center;
       max-width: 500px;
     }
+    .error { border-left: 4px solid #e53935; }
+    .success { border-left: 4px solid #43a047; }
     .spinner {
       border: 4px solid rgba(55, 167, 194, 0.2);
       border-top: 4px solid #37a7c2;
@@ -73,7 +91,7 @@
 <body>
   <div class="container">
     <div class="spinner"></div>
-    <h2>Completing Authentication</h2>
+    <h2>Processing Authentication...</h2>
     <p>This window will close automatically</p>
   </div>
 </body>
