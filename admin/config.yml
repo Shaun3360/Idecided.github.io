@@ -6,6 +6,9 @@ backend:
   auth_endpoint: auth.html
   app_id: Ov23liVjiXTYlKwvNl7y
   auth_type: implicit
+  # Add explicit scopes:
+  scope: repo,user  # Critical addition!
+
 
 site_url: https://idecided.co.za  # For better previews
 

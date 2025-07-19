@@ -3,43 +3,42 @@
 <head>
     <meta charset="utf-8">
     <title>Content Manager</title>
+    <style>
+        /* Minimal CSS to prevent conflicts */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        #nc-root {
+            height: 100vh;
+        }
+    </style>
     <script>
-        // Authentication check
+        // Authentication check - must be in HEAD to run first
         if (!localStorage.getItem('admin-authenticated')) {
             localStorage.setItem('cms-redirect', window.location.href);
             window.location.href = 'login.html';
         }
-        
-        // Auto-logout
-        setTimeout(() => {
-            localStorage.removeItem('admin-authenticated');
-            window.location.href = 'login.html';
-        }, 30 * 60 * 1000);
     </script>
 </head>
 <body>
-    <!-- Only this element - no wrappers, no styles -->
+    <!-- ONLY this element - no wrappers -->
     <div id="nc-root"></div>
 
-    <!-- Load CMS script first -->
+    <!-- Load CMS script AFTER mount point -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     
     <script>
-        // Add this message listener
-        window.addEventListener('message', (event) => {
-            if (event.data && event.data.type === 'auth-log') {
-                console.log('[AUTH-LOG]', event.data.message);
-            }
-        });
-        
-        // Minimal initialization
+        // Initialize IMMEDIATELY after script load
         if (typeof CMS !== 'undefined') {
-            console.log('CMS loaded, initializing...');
-            CMS.init({ config: "config.yml" });
+            CMS.init({ 
+                config: "config.yml" 
+            });
         } else {
-            console.error('CMS not loaded');
             document.getElementById('nc-root').innerHTML = `
-                <div style="padding: 20px; text-align: center;">
+                <div style="padding:20px;text-align:center">
                     <h2>CMS Failed to Load</h2>
                     <button onclick="window.location.reload()">Reload</button>
                 </div>

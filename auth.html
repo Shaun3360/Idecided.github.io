@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>Authentication Redirect</title>
   <script>
-    // Enhanced debugging version
+    // Enhanced debugging with scope verification
     console.log('[auth.html] Starting authentication processing');
     
     function sendToParent(message) {
@@ -19,35 +19,66 @@
     try {
       sendToParent('Authentication window opened');
       
-      // Capture token from URL parameters
+      // Capture token AND scopes from URL
       const hash = window.location.hash.substring(1);
       const params = new URLSearchParams(hash);
       const accessToken = params.get('access_token');
+      const scope = params.get('scope');  // Capture scopes
       
       if (accessToken) {
-        sendToParent('Access token found: ' + accessToken.substring(0, 10) + '...');
+        sendToParent(`Access token found (scopes: ${scope || 'none'})`);
         console.log('Access token:', accessToken);
+        console.log('Scopes:', scope);
+        
+        // Verify critical scopes
+        const hasRepoScope = scope && scope.includes('repo');
+        const hasUserScope = scope && scope.includes('user');
+        
+        if (!hasRepoScope || !hasUserScope) {
+          sendToParent(`MISSING SCOPES: repo=${hasRepoScope}, user=${hasUserScope}`);
+          throw new Error(`Insufficient scopes: ${scope}`);
+        }
         
         // Send token to parent window
         window.opener.postMessage({
           type: 'authorization',
           data: {
             token: accessToken,
-            provider: 'github'
+            provider: 'github',
+            scope: scope  // Include scopes for verification
           }
         }, window.location.origin);
         
         sendToParent('Token sent to parent window');
       } else {
-        sendToParent('No access token found in URL');
-        console.error('Token not found in URL:', window.location.href);
+        // Check for OAuth errors
+        const error = params.get('error');
+        const errorDesc = params.get('error_description');
+        
+        if (error) {
+          sendToParent(`GitHub Error: ${error} - ${errorDesc}`);
+          throw new Error(`GitHub OAuth error: ${error}: ${errorDesc}`);
+        } else {
+          sendToParent('No access token found in URL');
+          console.error('Token not found in URL:', window.location.href);
+        }
       }
     } catch (e) {
-      sendToParent('Error: ' + e.message);
-      console.error('Authentication error:', e);
+      sendToParent('CRITICAL ERROR: ' + e.message);
+      console.error('Authentication failed:', e);
+      
+      // Show error to user
+      document.body.innerHTML = `
+        <div style="padding: 20px; text-align: center; color: #d32f2f;">
+          <h3>Authentication Failed</h3>
+          <p>${e.message}</p>
+          <p>Contact support if this error persists</p>
+        </div>
+      `;
+      return; // Prevent window close
     }
     
-    // Close window after 2 seconds
+    // Close window after processing
     setTimeout(() => {
       sendToParent('Closing authentication window');
       window.close();
