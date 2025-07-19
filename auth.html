@@ -5,81 +5,66 @@
   <title>Authentication Redirect</title>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
-    // Enhanced GitHub OAuth handler
-    document.addEventListener('DOMContentLoaded', function() {
-      // Use CMS built-in handler as fallback
-      try {
-        // First try the official CMS method
-        CMS.handleAuthCallback();
-      } catch (e) {
-        console.error('CMS auth failed, using manual method:', e);
-        
-        // Handle successful authentication manually
-        if (window.location.hash.includes("access_token")) {
-          const hashParams = new URLSearchParams(window.location.hash.substring(1));
-          const accessToken = hashParams.get('access_token');
-          
-          if (accessToken) {
-            // Send token to CMS using standard method
-            window.opener.postMessage({
-              type: 'authorization',
-              data: {
-                token: accessToken,
-                provider: 'github'
-              }
-            }, window.location.origin);
-          }
-        }
-      }
+    // Enhanced logging version
+    console.log('[auth.html] Starting authentication processing');
+    
+    function logToParent(message) {
+      window.opener.postMessage({
+        type: 'auth-log',
+        message: message
+      }, '*');
+    }
+
+    try {
+      logToParent('Authentication window opened');
       
-      // Close window after 3 seconds if still open
-      setTimeout(() => {
-        if (!window.closed) {
-          window.close();
+      // Try built-in CMS method first
+      if (typeof CMS !== 'undefined' && typeof CMS.handleAuthCallback === 'function') {
+        logToParent('Using CMS.handleAuthCallback');
+        CMS.handleAuthCallback();
+        logToParent('CMS.handleAuthCallback completed');
+      } else {
+        throw new Error('CMS handleAuthCallback not available');
+      }
+    } catch (e) {
+      logToParent(`Falling back to manual method: ${e.message}`);
+      console.error('CMS auth failed, using manual method:', e);
+      
+      // Manual handling
+      if (window.location.hash.includes("access_token")) {
+        const hashParams = new URLSearchParams(window.location.hash.substring(1));
+        const accessToken = hashParams.get('access_token');
+        
+        if (accessToken) {
+          logToParent('Sending access token to parent');
+          window.opener.postMessage({
+            type: 'authorization',
+            data: {
+              token: accessToken,
+              provider: 'github'
+            }
+          }, window.location.origin);
+        } else {
+          logToParent('No access token found in URL hash');
         }
-      }, 3000);
-    });
+      } else {
+        logToParent('No access token found in URL');
+      }
+    }
+    
+    // Close window after processing
+    setTimeout(() => {
+      logToParent('Closing authentication window');
+      window.close();
+    }, 1000);
   </script>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f8f9fa;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .container {
-      max-width: 600px;
-      padding: 2rem;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    .spinner {
-      width: 3rem;
-      height: 3rem;
-      border: 4px solid rgba(55, 167, 194, 0.2);
-      border-top-color: #37a7c2;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 1.5rem;
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-  </style>
 </head>
 <body>
-  <div class="container">
-    <div class="spinner"></div>
-    <p>Completing authentication...</p>
-    <p class="small text-muted mt-2">This window should close automatically</p>
-    <button class="btn btn-sm btn-outline-secondary mt-3" onclick="window.close()">
-      Close Window Manually
-    </button>
+  <div style="text-align: center; padding: 50px; font-family: sans-serif;">
+    <h2>Authentication Complete</h2>
+    <p>You can safely close this window</p>
+    <p><small>This window should close automatically</small></p>
+    <button onclick="window.close()">Close Window</button>
   </div>
 </body>
 </html>

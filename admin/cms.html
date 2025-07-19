@@ -17,8 +17,19 @@
             bottom: 0;
         }
     </style>
+
+    <script>
+  // Add this at the very top of your cms.html
+  window.addEventListener('message', (event) => {
+    if (event.data && event.data.type === 'auth-log') {
+      console.log('[AUTH-LOG]', event.data.message);
+    }
+  });
+</script>
+
 </head>
 <body>
+
     <!-- Only include the mount point - no wrappers -->
     <div id="nc-root"></div>
 
