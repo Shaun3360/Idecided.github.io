@@ -3,68 +3,61 @@
 <head>
   <meta charset="utf-8">
   <title>Authentication Redirect</title>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
-    // Enhanced logging version
+    // Enhanced debugging version
     console.log('[auth.html] Starting authentication processing');
     
-    function logToParent(message) {
-      window.opener.postMessage({
-        type: 'auth-log',
-        message: message
-      }, '*');
+    function sendToParent(message) {
+      if (window.opener) {
+        window.opener.postMessage({
+          type: 'auth-log',
+          message: message
+        }, '*');
+      }
     }
 
     try {
-      logToParent('Authentication window opened');
+      sendToParent('Authentication window opened');
       
-      // Try built-in CMS method first
-      if (typeof CMS !== 'undefined' && typeof CMS.handleAuthCallback === 'function') {
-        logToParent('Using CMS.handleAuthCallback');
-        CMS.handleAuthCallback();
-        logToParent('CMS.handleAuthCallback completed');
+      // Capture token from URL parameters
+      const hash = window.location.hash.substring(1);
+      const params = new URLSearchParams(hash);
+      const accessToken = params.get('access_token');
+      
+      if (accessToken) {
+        sendToParent('Access token found: ' + accessToken.substring(0, 10) + '...');
+        console.log('Access token:', accessToken);
+        
+        // Send token to parent window
+        window.opener.postMessage({
+          type: 'authorization',
+          data: {
+            token: accessToken,
+            provider: 'github'
+          }
+        }, window.location.origin);
+        
+        sendToParent('Token sent to parent window');
       } else {
-        throw new Error('CMS handleAuthCallback not available');
+        sendToParent('No access token found in URL');
+        console.error('Token not found in URL:', window.location.href);
       }
     } catch (e) {
-      logToParent(`Falling back to manual method: ${e.message}`);
-      console.error('CMS auth failed, using manual method:', e);
-      
-      // Manual handling
-      if (window.location.hash.includes("access_token")) {
-        const hashParams = new URLSearchParams(window.location.hash.substring(1));
-        const accessToken = hashParams.get('access_token');
-        
-        if (accessToken) {
-          logToParent('Sending access token to parent');
-          window.opener.postMessage({
-            type: 'authorization',
-            data: {
-              token: accessToken,
-              provider: 'github'
-            }
-          }, window.location.origin);
-        } else {
-          logToParent('No access token found in URL hash');
-        }
-      } else {
-        logToParent('No access token found in URL');
-      }
+      sendToParent('Error: ' + e.message);
+      console.error('Authentication error:', e);
     }
     
-    // Close window after processing
+    // Close window after 2 seconds
     setTimeout(() => {
-      logToParent('Closing authentication window');
+      sendToParent('Closing authentication window');
       window.close();
-    }, 1000);
+    }, 2000);
   </script>
 </head>
 <body>
-  <div style="text-align: center; padding: 50px; font-family: sans-serif;">
-    <h2>Authentication Complete</h2>
-    <p>You can safely close this window</p>
-    <p><small>This window should close automatically</small></p>
-    <button onclick="window.close()">Close Window</button>
+  <div style="padding: 20px; text-align: center;">
+    <h3>Processing Authentication...</h3>
+    <p>This window will close automatically</p>
   </div>
 </body>
 </html>

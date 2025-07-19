@@ -1,76 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I DECIDED - Admin Dashboard</title>    
-    <!-- Add Decap CMS script -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    
-     <style>
-        /* Remove all custom styles except this */
-        #nc-root {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-        }
-    </style>
-
+    <meta charset="utf-8">
+    <title>Content Manager</title>
     <script>
-  // Add this at the very top of your cms.html
-  window.addEventListener('message', (event) => {
-    if (event.data && event.data.type === 'auth-log') {
-      console.log('[AUTH-LOG]', event.data.message);
-    }
-  });
-</script>
-
-</head>
-<body>
-
-    <!-- Only include the mount point - no wrappers -->
-    <div id="nc-root"></div>
-
-    <!-- Authentication Check -->
-    <script>
-        // Check authentication
-        if(!localStorage.getItem('admin-authenticated')) {
+        // Authentication check
+        if (!localStorage.getItem('admin-authenticated')) {
             localStorage.setItem('cms-redirect', window.location.href);
             window.location.href = 'login.html';
         }
         
-        // Auto-logout after 30 minutes
+        // Auto-logout
         setTimeout(() => {
             localStorage.removeItem('admin-authenticated');
             window.location.href = 'login.html';
         }, 30 * 60 * 1000);
     </script>
+</head>
+<body>
+    <!-- Only this element - no wrappers, no styles -->
+    <div id="nc-root"></div>
 
-    <!-- Load CMS Script - IMPORTANT: Load only once! -->
+    <!-- Load CMS script first -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     
-    <!-- Simplified CMS Initialization -->
     <script>
-        // Initialize CMS directly without wrapper functions
+        // Add this message listener
+        window.addEventListener('message', (event) => {
+            if (event.data && event.data.type === 'auth-log') {
+                console.log('[AUTH-LOG]', event.data.message);
+            }
+        });
+        
+        // Minimal initialization
         if (typeof CMS !== 'undefined') {
-            CMS.init({ 
-                config: "config.yml" 
-            });
+            console.log('CMS loaded, initializing...');
+            CMS.init({ config: "config.yml" });
         } else {
-            const errorDiv = document.createElement('div');
-            errorDiv.innerHTML = `
-                <div style="padding: 2rem; text-align: center;">
+            console.error('CMS not loaded');
+            document.getElementById('nc-root').innerHTML = `
+                <div style="padding: 20px; text-align: center;">
                     <h2>CMS Failed to Load</h2>
-                    <p>Please refresh the page or check your connection</p>
-                    <button onclick="window.location.reload()" 
-                            style="padding: 10px 20px; background: #37a7c2; color: white; border: none; cursor: pointer;">
-                        Reload CMS
-                    </button>
+                    <button onclick="window.location.reload()">Reload</button>
                 </div>
             `;
-            document.getElementById('nc-root').appendChild(errorDiv);
         }
     </script>
 </body>
