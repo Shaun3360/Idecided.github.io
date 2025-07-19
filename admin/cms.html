@@ -4,72 +4,90 @@
   <meta charset="utf-8">
   <title>Content Manager</title>
   <script>
-    // Initialize authentication state
-    let authProcessed = false;
-    
-    // Message listener for token
+    // Initialize CMS after authentication
+    function initCMS() {
+      if (typeof CMS !== 'undefined') {
+        console.log('Initializing CMS');
+        CMS.init({ 
+          config: "config.yml" 
+        });
+      } else {
+        console.error('CMS not available');
+      }
+    }
+
+    // Check for existing authentication
+    if (localStorage.getItem('netlify-cms-user')) {
+      document.addEventListener('DOMContentLoaded', initCMS);
+    }
+
+    // Message handler for GitHub token
     window.addEventListener('message', (event) => {
-      if (event.data && event.data.type === 'authorization') {
-        console.log('Received authorization token');
-        authProcessed = true;
+      if (event.data && event.data.type === 'github-token') {
+        console.log('Received GitHub token');
         
-        // Store token in localStorage
+        // Store authentication state
         localStorage.setItem('netlify-cms-user', JSON.stringify({
-          token: event.data.data.token,
+          token: event.data.token,
           provider: 'github'
         }));
         
-        // Initialize CMS after token receipt
-        if (typeof CMS !== 'undefined') {
-          console.log('Initializing CMS with token');
-          CMS.init({ 
-            config: "config.yml" 
-          });
-        } else {
-          console.error('CMS not available after token receipt');
-        }
+        initCMS();
       }
     });
-
+    
     // Simple authentication check
     if (!localStorage.getItem('admin-authenticated')) {
       window.location.href = 'login.html';
-    } else if (localStorage.getItem('netlify-cms-user')) {
-      // User already has token, initialize immediately
-      console.log('User already authenticated, initializing CMS');
-      document.addEventListener('DOMContentLoaded', () => {
-        if (typeof CMS !== 'undefined') {
-          CMS.init({ config: "config.yml" });
-        }
-      });
     }
   </script>
 </head>
 <body>
-  <!-- ONLY this element - no wrappers, no styles -->
-  <div id="nc-root"></div>
+  <!-- CMS mount point -->
+  <div id="nc-root">
+    <div style="padding: 40px; text-align: center; font-family: sans-serif;">
+      <h2>I DECIDED Content Manager</h2>
+      <p>Connecting to GitHub...</p>
+      <button id="github-login" style="padding: 10px 20px; background: #24292e; color: white; border: none; cursor: pointer;">
+        <i class="fab fa-github"></i> Login with GitHub
+      </button>
+      <div id="auth-status" style="margin-top: 20px;"></div>
+    </div>
+  </div>
   
-  <!-- Load CMS script from CDN -->
+  <!-- Load CMS script -->
   <script src="https://unpkg.com/decap-cms@3.8.0/dist/decap-cms.js"></script>
   
   <script>
-    // Initialize CMS if we have a token but no message was received
-    document.addEventListener('DOMContentLoaded', () => {
-      if (localStorage.getItem('netlify-cms-user') && !authProcessed) {
-        console.log('Initializing CMS from existing token');
-        if (typeof CMS !== 'undefined') {
-          CMS.init({ config: "config.yml" });
+    // Manual login button handler
+    document.getElementById('github-login').addEventListener('click', () => {
+      // Clear any previous state
+      localStorage.removeItem('netlify-cms-user');
+      
+      // Open authentication window
+      const authWindow = window.open(
+        'https://github.com/login/oauth/authorize?client_id=Ov23liVjiXTYlKwvNl7y&scope=repo,user&redirect_uri=https://idecided.co.za/auth.html',
+        'github-auth',
+        'width=600,height=600'
+      );
+      
+      // Poll for window close
+      const checkClosed = setInterval(() => {
+        if (authWindow.closed) {
+          clearInterval(checkClosed);
+          document.getElementById('auth-status').textContent = 'Authentication completed. Loading content...';
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
         }
-      }
+      }, 500);
     });
-
-    // Fallback initialization after timeout
+    
+    // If we have a token but CMS didn't initialize
     setTimeout(() => {
-      if (!document.querySelector('#nc-root').hasChildNodes() && 
-          localStorage.getItem('netlify-cms-user') &&
-          typeof CMS !== 'undefined') {
-        console.log('Fallback CMS initialization');
-        CMS.init({ config: "config.yml" });
+      if (localStorage.getItem('netlify-cms-user') && 
+          !document.querySelector('#nc-root > div > div')) {
+        window.location.reload();
       }
     }, 3000);
   </script>

@@ -6,43 +6,75 @@
   <script>
     window.addEventListener('load', function() {
       // Extract token from URL
-      const tokenMatch = window.location.href.match(/access_token=([^&]+)/);
-      if (tokenMatch && tokenMatch[1]) {
-        const token = tokenMatch[1];
+      const hash = window.location.hash.substring(1);
+      const params = new URLSearchParams(hash);
+      const token = params.get('access_token');
+      
+      if (token) {
+        console.log('GitHub token received');
         
         // Send token to parent window
-        window.opener.postMessage({
-          type: 'authorization',
-          data: {
-            token: token,
-            provider: 'github'
-          }
-        }, window.location.origin);
+        if (window.opener) {
+          window.opener.postMessage({
+            type: 'github-token',
+            token: token
+          }, 'https://idecided.co.za');
+        }
         
-        // Confirm receipt before closing
-        const confirmInterval = setInterval(() => {
-          if (window.opener.closed) {
-            clearInterval(confirmInterval);
-            window.close();
-          }
-        }, 300);
-        
-        // Fallback close after 3 seconds
+        // Close window after 1 second
         setTimeout(() => {
           window.close();
-        }, 3000);
+        }, 1000);
       } else {
         console.error('Token not found in URL');
-        window.close();
+        document.body.innerHTML = `
+          <div style="padding: 20px; text-align: center; color: #d32f2f;">
+            <h3>Authentication Failed</h3>
+            <p>No access token received from GitHub</p>
+            <p>Please try again or contact support</p>
+          </div>
+        `;
       }
     });
   </script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8f9fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 500px;
+    }
+    .spinner {
+      border: 4px solid rgba(55, 167, 194, 0.2);
+      border-top: 4px solid #37a7c2;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
 </head>
 <body>
-  <div style="text-align: center; padding: 50px; font-family: sans-serif;">
-    <h2>Authentication Successful</h2>
+  <div class="container">
+    <div class="spinner"></div>
+    <h2>Completing Authentication</h2>
     <p>This window will close automatically</p>
-    <p><small>If it doesn't close, you may manually close this window</small></p>
   </div>
 </body>
 </html>
