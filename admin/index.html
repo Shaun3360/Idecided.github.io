@@ -386,11 +386,46 @@
 
         
             <!-- Blog Management Section -->
-        <section class="admin-section">
-             <h2><i class="fas fa-edit"></i> Blog Management</h2>
-            <div id="ncms-root"></div>
-        </section>
-
+       <section class="admin-section">
+  <h2><i class="fas fa-edit"></i> Blog Management</h2>
+  <div id="ncms-root"></div>
+  <script>
+    // Initialize Decap CMS with GitHub backend
+    CMS.registerPreviewStyle("/styles.css");
+    CMS.init({
+      config: {
+        backend: {
+          name: "github",
+          repo: "Shaun3360/Idecided.github.io",
+          branch: "main",
+          base_url: "https://idecided.co.za",
+          auth_endpoint: "auth.html",
+          auth_type: "implicit"
+        },
+        load_config_file: false, // We're using inline config
+        media_folder: "images/uploads",
+        public_folder: "/images/uploads",
+        collections: [
+          {
+            name: "blog",
+            label: "Blog Posts",
+            folder: "content/blog",
+            create: true,
+            slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
+            fields: [
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Publish Date", name: "date", widget: "datetime" },
+              { label: "Featured Image", name: "image", widget: "image" },
+              { label: "Excerpt", name: "excerpt", widget: "text" },
+              { label: "Body", name: "body", widget: "markdown" },
+              { label: "Author", name: "author", widget: "string", default: "I DECIDED Team" }
+            ]
+          }
+        ]
+      }
+    });
+  </script>
+</section>
             <!-- Recent Blog Posts -->
             <section class="admin-section">
                 <h2><i class="fas fa-newspaper"></i> Recent Blog Posts</h2>

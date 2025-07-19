@@ -9,6 +9,14 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@700&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXX');
+</script>
 </head>
 <body>
  <!-- Header -->
@@ -534,7 +542,7 @@
   </section>
   
   <!-- Community Section -->
-  <section id="community" class="section">
+  <section id="community-intro" class="section">
     <div class="container">
       <h2 class="section-title">Community Engagement</h2>
       <div class="row justify-content-center">
@@ -630,8 +638,28 @@
       </div>
   </div>
 
-  
+  </section>
+
+  <!-- ADD BLOG SECTION HERE -->
+<section id="blog" class="section bg-light">
+  <div class="container">
+    <h2 class="section-title">Latest Updates</h2>
+    <div class="row g-4" id="blog-posts">
+      <div class="col-12 text-center">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
+
+<div class="text-center mt-4">
+  <a href="/blog.html" class="btn btn-outline-primary">View All Updates</a>
+</div>
+
+
+
 
 
 
@@ -733,6 +761,21 @@
   </div>
 </footer>
 
+<!-- Blog Post Modal -->
+<div class="modal fade" id="blogModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="blogModalTitle">Blog Post</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="blogModalContent">
+        <!-- Content loads here -->
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 
 // Sample workshop data
@@ -761,6 +804,86 @@ workshops.forEach(ws => {
 document.querySelector('#register-btn').addEventListener('click', () => {
   alert('Registration system would open here');
 });
+
+// Blog loader with markdown support
+async function loadBlogPosts() {
+  const container = document.getElementById('blog-posts');
+  if (!container) return;
+  
+  try {
+    const response = await fetch('https://api.github.com/repos/Shaun3360/Idecided.github.io/contents/content/blog?ref=main');
+    const files = await response.json();
+    
+    container.innerHTML = '';
+    
+    files.forEach(async file => {
+      if (file.name.endsWith('.md')) {
+        const postResponse = await fetch(file.download_url);
+        const content = await postResponse.text();
+        
+        // Extract front matter
+        const title = content.match(/title: (.*)/)[1] || 'Untitled';
+        const date = content.match(/date: (.*)/)[1] || '';
+        const imageMatch = content.match(/image: (.*)/);
+        const image = imageMatch ? imageMatch[1] : 'images/placeholder.jpg';
+        
+        // Render post card
+        container.innerHTML += `
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+              <img src="${image}" class="card-img-top" alt="${title}">
+              <div class="card-body">
+                <h5 class="card-title">${title}</h5>
+                ${date ? `<small class="text-muted">${new Date(date).toLocaleDateString()}</small>` : ''}
+                <a href="#" class="stretched-link blog-link" data-url="${file.download_url}"></a>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    });
+    
+    // Add click handlers
+    document.querySelectorAll('.blog-link').forEach(link => {
+      link.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const url = link.dataset.url;
+        const response = await fetch(url);
+        const content = await response.text();
+        // Render full post in modal (see next step)
+      });
+    });
+    
+  } catch (error) {
+    container.innerHTML = `<div class="alert alert-danger">Error loading blog: ${error.message}</div>`;
+  }
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', loadBlogPosts);
+
+
+// Add to blog link click handler
+document.querySelectorAll('.blog-link').forEach(link => {
+  link.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const url = link.dataset.url;
+    const response = await fetch(url);
+    const content = await response.text();
+    
+    // Convert markdown to HTML
+    const htmlContent = marked.parse(content);
+    
+    // Update modal
+    document.getElementById('blogModalTitle').textContent = 
+      content.match(/title: (.*)/)[1] || 'Blog Post';
+    document.getElementById('blogModalContent').innerHTML = htmlContent;
+    
+    // Show modal
+    new bootstrap.Modal(document.getElementById('blogModal')).show();
+  });
+});
+
 </script>
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>

@@ -551,3 +551,49 @@ document.querySelectorAll('form[action*="payfast"]').forEach(form => {
     this.submit();
   });
 });
+
+// Update in main.js (Blog Loading Function)
+async function loadBlogPosts() {
+  const container = document.getElementById('blog-posts');
+  if (!container) return;
+  
+  try {
+    const response = await fetch('https://api.github.com/repos/Shaun3360/Idecided.github.io/contents/content/blog?ref=main');
+    const files = await response.json();
+    
+    container.innerHTML = '';
+    
+    // Sort by date (newest first)
+    files.sort((a, b) => b.name.localeCompare(a.name));
+    
+    files.forEach(async file => {
+      if (file.name.endsWith('.md')) {
+        const postResponse = await fetch(file.download_url);
+        const content = await postResponse.text();
+        
+        // Extract front matter
+        const title = content.match(/title: (.*)/)?.[1] || 'Untitled';
+        const date = content.match(/date: (.*)/)?.[1] || '';
+        const image = content.match(/image: (.*)/)?.[1] || 'images/placeholder.jpg';
+        const excerpt = content.match(/excerpt: (.*)/)?.[1] || '';
+        
+        // Render post card
+        container.innerHTML += `
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+              <img src="${image}" class="card-img-top" alt="${title}">
+              <div class="card-body">
+                <h5 class="card-title">${title}</h5>
+                ${date ? `<small class="text-muted">${new Date(date).toLocaleDateString()}</small>` : ''}
+                ${excerpt ? `<p class="card-text mt-2">${excerpt}</p>` : ''}
+                <a href="/blog-post.html?${file.name.replace('.md', '')}" class="stretched-link"></a>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    });
+  } catch (error) {
+    container.innerHTML = `<div class="alert alert-danger">Error loading blog: ${error.message}</div>`;
+  }
+}
