@@ -6,6 +6,10 @@
     <title>I DECIDED - Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Add Decap CMS script -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    
     <style>
         :root {
             --primary: #37a7c2;
@@ -304,6 +308,12 @@
             color: white;
         }
         
+        /* CMS Loading State */
+        .cms-loading {
+            text-align: center;
+            padding: 2rem;
+        }
+        
         /* Responsive */
         @media (max-width: 992px) {
             .admin-container {
@@ -331,7 +341,7 @@
       window.location.href = 'login.html';
     }, 30 * 60 * 1000);
   </script>
-  <!-- ===== END AUTH CHECK ===== --
+  <!-- ===== END AUTH CHECK ===== -->
 
     <!-- Admin Header -->
     <header class="admin-header">
@@ -340,7 +350,7 @@
             <nav class="admin-nav">
                 <a href="../index.html"><i class="fas fa-globe"></i> View Site</a>
                 <a href="#"><i class="fas fa-user"></i> Admin User</a>
-                <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                <a href="#" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </nav>
         </div>
     </header>
@@ -384,48 +394,19 @@
                 </div>
             </div>
 
-        
             <!-- Blog Management Section -->
-       <section class="admin-section">
-  <h2><i class="fas fa-edit"></i> Blog Management</h2>
-  <div id="ncms-root"></div>
-  <script>
-    // Initialize Decap CMS with GitHub backend
-    CMS.registerPreviewStyle("/styles.css");
-    CMS.init({
-      config: {
-        backend: {
-          name: "github",
-          repo: "Shaun3360/Idecided.github.io",
-          branch: "main",
-          base_url: "https://idecided.co.za",
-          auth_endpoint: "auth.html",
-          auth_type: "implicit"
-        },
-        load_config_file: false, // We're using inline config
-        media_folder: "images/uploads",
-        public_folder: "/images/uploads",
-        collections: [
-          {
-            name: "blog",
-            label: "Blog Posts",
-            folder: "content/blog",
-            create: true,
-            slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
-            fields: [
-              { label: "Title", name: "title", widget: "string" },
-              { label: "Publish Date", name: "date", widget: "datetime" },
-              { label: "Featured Image", name: "image", widget: "image" },
-              { label: "Excerpt", name: "excerpt", widget: "text" },
-              { label: "Body", name: "body", widget: "markdown" },
-              { label: "Author", name: "author", widget: "string", default: "I DECIDED Team" }
-            ]
-          }
-        ]
-      }
-    });
-  </script>
-</section>
+            <section class="admin-section">
+                <h2><i class="fas fa-edit"></i> Blog Management</h2>
+                <div id="ncms-root">
+                    <div class="cms-loading">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading CMS...</span>
+                        </div>
+                        <p class="mt-3">Initializing content management system</p>
+                    </div>
+                </div>
+            </section>
+            
             <!-- Recent Blog Posts -->
             <section class="admin-section">
                 <h2><i class="fas fa-newspaper"></i> Recent Blog Posts</h2>
@@ -495,72 +476,81 @@
     </div>
 
     <script>
-
-  // Initialize Decap CMS
-  CMS.registerPreviewStyle("/styles.css");
-  CMS.init({
-    config: {
-      load_config_file: true, // Loads config from admin/config.yml
-      backend: {
-        auth_scope: "repo" // Required for GitHub integration
-      }
-    }
-  });
-
-        // Basic form handling
-        document.getElementById('blog-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const title = document.getElementById('blog-title').value;
-            const category = document.getElementById('blog-category').value;
-            const content = document.getElementById('blog-content').value;
-            
-            // Basic validation
-            if (!title || !category || !content) {
-                alert('Please fill in all required fields');
-                return;
+        // Initialize CMS after full load
+        window.addEventListener('load', () => {
+            if (typeof CMS !== 'undefined') {
+                initCMS();
+            } else {
+                console.error('Decap CMS failed to load');
+                document.getElementById('ncms-root').innerHTML = `
+                    <div class="alert alert-danger">
+                        CMS failed to load. Please refresh or check your connection.
+                        <button class="btn btn-secondary mt-2" onclick="window.location.reload()">
+                            Reload CMS
+                        </button>
+                    </div>
+                `;
             }
-            
-            // In a real implementation, this would send data to a server
-            alert('Blog post saved successfully! This would be saved to a database in a real implementation.');
-            
-            // Reset form
-            this.reset();
         });
-        
-        // Simulated logout
-        document.querySelector('[href="#"]:last-child').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('You have been logged out. In a real implementation, this would redirect to login.');
+
+        function initCMS() {
+            CMS.registerPreviewStyle("/styles.css");
+            CMS.init({
+                config: {
+                    backend: {
+                        name: "github",
+                        repo: "Shaun3360/Idecided.github.io",
+                        branch: "main",
+                        base_url: "https://idecided.co.za",
+                        auth_endpoint: "auth.html",
+                        auth_type: "implicit",
+                        app_id: "Ov23liVjiXTYlKwvNl7y"
+                    },
+                    load_config_file: false,
+                    media_folder: "images/uploads",
+                    public_folder: "/images/uploads",
+                    collections: [
+                        {
+                            name: "blog",
+                            label: "Blog Posts",
+                            folder: "content/blog",
+                            create: true,
+                            slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
+                            fields: [
+                                { label: "Title", name: "title", widget: "string" },
+                                { label: "Publish Date", name: "date", widget: "datetime" },
+                                { label: "Featured Image", name: "image", widget: "image" },
+                                { label: "Excerpt", name: "excerpt", widget: "text" },
+                                { label: "Body", name: "body", widget: "markdown" },
+                                { label: "Author", name: "author", widget: "string", default: "I DECIDED Team" }
+                            ]
+                        }
+                    ]
+                }
+            });
+        }
+
+        // Fix event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Logout functionality
+            const logoutBtn = document.querySelector('.logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('admin-authenticated');
+                    window.location.href = 'login.html';
+                });
+            }
+
+            // Admin nav toggle
+            const menuItems = document.querySelectorAll('.admin-menu a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
         });
     </script>
-
-    <script>
-document.addEventListener('DOMContentLoaded', () => {
-    // Check for existing session
-    if(!localStorage.getItem('admin-authenticated')) {
-        redirectToLogin();
-    }
-
-    // Logout functionality
-    document.querySelector('[href="#"]:last-child').addEventListener('click', (e) => {
-        e.preventDefault();
-        localStorage.removeItem('admin-authenticated');
-        redirectToLogin();
-    });
-
-    function redirectToLogin() {
-        window.location.href = 'login.html';
-    }
-});
-
-<!-- Add logout functionality -->
-document.querySelector('.logout-btn').addEventListener('click', function(e) {
-      e.preventDefault();
-      localStorage.removeItem('admin-authenticated');
-      window.location.href = 'login.html';
-    });
-</script>
 </body>
 </html>
