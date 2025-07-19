@@ -3,12 +3,15 @@ backend:
   repo: Shaun3360/Idecided.github.io
   branch: main
   base_url: https://idecided.co.za
-  auth_endpoint: https://idecided.co.za/auth.html
-  app_id: Ov23liVjiXTYlKwvNl7y  # From GitHub OAuth
+  auth_endpoint: auth.html
+  app_id: Ov23liVjiXTYlKwvNl7y
   auth_type: implicit
+  open_authoring: true
 
-media_folder: "images/uploads"  # Where images will be stored
-public_folder: "/images/uploads"  # Public URL path
+site_url: https://idecided.co.za  # For better previews
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
 
 collections:
   - name: "blog"
