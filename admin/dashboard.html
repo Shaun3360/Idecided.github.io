@@ -6,10 +6,6 @@
     <title>I DECIDED - Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Add Decap CMS script -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    
     <style>
         :root {
             --primary: #37a7c2;
@@ -146,75 +142,6 @@
             border-bottom: 1px solid #eee;
         }
         
-        /* Form Styles */
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #333;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 10px 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(55, 167, 194, 0.1);
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        /* Buttons */
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background-color: #2d91a8;
-        }
-        
-        .btn-secondary {
-            background-color: var(--secondary);
-            color: #333;
-        }
-        
-        .btn-secondary:hover {
-            background-color: #e6b445;
-        }
-        
-        .btn-accent {
-            background-color: var(--accent);
-            color: white;
-        }
-        
-        .btn-accent:hover {
-            background-color: #c1121f;
-        }
-        
         /* Dashboard Cards */
         .dashboard-stats {
             display: grid;
@@ -308,12 +235,6 @@
             color: white;
         }
         
-        /* CMS Loading State */
-        .cms-loading {
-            text-align: center;
-            padding: 2rem;
-        }
-        
         /* Responsive */
         @media (max-width: 992px) {
             .admin-container {
@@ -327,24 +248,19 @@
     </style>
 </head>
 <body>
-
-    <div id="nc-root"></div>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
-    <!-- ===== ADD THIS AUTHENTICATION CHECK ===== -->
-  <script>
-    // Check if user is authenticated
-    if(!localStorage.getItem('admin-authenticated')) {
-      window.location.href = 'login.html';
-    }
-    
-    // Auto-logout after 30 minutes
-    setTimeout(() => {
-      localStorage.removeItem('admin-authenticated');
-      window.location.href = 'login.html';
-    }, 30 * 60 * 1000);
-  </script>
-  <!-- ===== END AUTH CHECK ===== -->
+    <!-- Authentication Check -->
+    <script>
+        // Check if user is authenticated
+        if(!localStorage.getItem('admin-authenticated')) {
+            window.location.href = 'login.html';
+        }
+        
+        // Auto-logout after 30 minutes
+        setTimeout(() => {
+            localStorage.removeItem('admin-authenticated');
+            window.location.href = 'login.html';
+        }, 30 * 60 * 1000);
+    </script>
 
     <!-- Admin Header -->
     <header class="admin-header">
@@ -367,8 +283,9 @@
             </div>
             <ul class="admin-menu">
                 <li><a href="#" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                <li><a href="#"><i class="fas fa-edit"></i> Create Blog Post</a></li>
-                <li><a href="#"><i class="fas fa-newspaper"></i> Manage Blog</a></li>
+                <!-- Link to CMS instead of # -->
+                <li><a href="cms.html"><i class="fas fa-edit"></i> Create Blog Post</a></li>
+                <li><a href="cms.html"><i class="fas fa-newspaper"></i> Manage Blog</a></li>
                 <li><a href="#"><i class="fas fa-calendar-check"></i> Workshop Registrations</a></li>
                 <li><a href="#"><i class="fas fa-donate"></i> Donations</a></li>
                 <li><a href="#"><i class="fas fa-users"></i> User Management</a></li>
@@ -396,19 +313,6 @@
                     <p>Total Donations</p>
                 </div>
             </div>
-
-            <!-- Blog Management Section -->
-            <section class="admin-section">
-                <h2><i class="fas fa-edit"></i> Blog Management</h2>
-                <div id="ncms-root">
-                    <div class="cms-loading">
-                        <div class="spinner-border text-primary" role="status">
-                            <span class="visually-hidden">Loading CMS...</span>
-                        </div>
-                        <p class="mt-3">Initializing content management system</p>
-                    </div>
-                </div>
-            </section>
             
             <!-- Recent Blog Posts -->
             <section class="admin-section">
@@ -436,42 +340,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>How Our Graduates Landed Their Dream Jobs</td>
-                            <td>Success Stories</td>
-                            <td>May 10, 2025</td>
-                            <td><span class="badge bg-success">Published</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                                    <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>New Barista Training Program Launched</td>
-                            <td>Program Updates</td>
-                            <td>May 8, 2025</td>
-                            <td><span class="badge bg-warning">Draft</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                                    <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5 Essential Skills Employers Look For</td>
-                            <td>Career Tips</td>
-                            <td>May 3, 2025</td>
-                            <td><span class="badge bg-success">Published</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                                    <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                                </div>
-                            </td>
-                        </tr>
+                        <!-- More rows... -->
                     </tbody>
                 </table>
             </section>
@@ -479,60 +348,6 @@
     </div>
 
     <script>
-        // Initialize CMS after full load
-        window.addEventListener('load', () => {
-            if (typeof CMS !== 'undefined') {
-                initCMS();
-            } else {
-                console.error('Decap CMS failed to load');
-                document.getElementById('ncms-root').innerHTML = `
-                    <div class="alert alert-danger">
-                        CMS failed to load. Please refresh or check your connection.
-                        <button class="btn btn-secondary mt-2" onclick="window.location.reload()">
-                            Reload CMS
-                        </button>
-                    </div>
-                `;
-            }
-        });
-
-        function initCMS() {
-            CMS.registerPreviewStyle("/styles.css");
-            CMS.init({
-                config: {
-                    backend: {
-                        name: "github",
-                        repo: "Shaun3360/Idecided.github.io",
-                        branch: "main",
-                        base_url: "https://idecided.co.za",
-                        auth_endpoint: "auth.html",
-                        auth_type: "implicit",
-                        app_id: "Ov23liVjiXTYlKwvNl7y"
-                    },
-                    load_config_file: false,
-                    media_folder: "images/uploads",
-                    public_folder: "/images/uploads",
-                    collections: [
-                        {
-                            name: "blog",
-                            label: "Blog Posts",
-                            folder: "content/blog",
-                            create: true,
-                            slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
-                            fields: [
-                                { label: "Title", name: "title", widget: "string" },
-                                { label: "Publish Date", name: "date", widget: "datetime" },
-                                { label: "Featured Image", name: "image", widget: "image" },
-                                { label: "Excerpt", name: "excerpt", widget: "text" },
-                                { label: "Body", name: "body", widget: "markdown" },
-                                { label: "Author", name: "author", widget: "string", default: "I DECIDED Team" }
-                            ]
-                        }
-                    ]
-                }
-            });
-        }
-
         // Fix event listeners
         document.addEventListener('DOMContentLoaded', () => {
             // Logout functionality

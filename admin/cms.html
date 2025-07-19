@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I DECIDED - Admin Dashboard</title>    
+    <!-- Add Decap CMS script -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    
+     <style>
+        /* Simplified styles only for CMS container */
+        #nc-root {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10000;
+            background: white;
+        }
+        
+        .cms-loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Add this back button -->
+    <div style="position: absolute; top: 15px; left: 15px; z-index: 10001;">
+        <a href="dashboard.html" style="background: #37a7c2; color: white; padding: 8px 15px; border-radius: 4px; text-decoration: none;">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+    </div>
+
+     <!-- CMS Mount Point -->
+    <div id="nc-root">
+        <div class="cms-loading">
+            <div class="spinner"></div>
+            <p>Loading Content Manager...</p>
+        </div>
+    </div>
+
+    <!-- Authentication Check -->
+    <script>
+        // Check authentication
+        if(!localStorage.getItem('admin-authenticated')) {
+            window.location.href = 'login.html';
+        }
+        
+        // Auto-logout after 30 minutes
+        setTimeout(() => {
+            localStorage.removeItem('admin-authenticated');
+            window.location.href = 'login.html';
+        }, 30 * 60 * 1000);
+    </script>
+
+    <!-- Load CMS Script -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    
+    <!-- CMS Initialization -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize CMS
+            if (typeof CMS !== 'undefined') {
+                CMS.init({ 
+                    config: "config.yml" 
+                });
+                
+                // Register preview styles
+                CMS.registerPreviewStyle("/styles.css");
+            } else {
+                console.error('Decap CMS failed to load');
+                document.getElementById('nc-root').innerHTML = `
+                    <div style="padding: 2rem; text-align: center;">
+                        <h2>CMS Failed to Load</h2>
+                        <p>Please check your internet connection and refresh</p>
+                        <button onclick="window.location.reload()" 
+                                style="padding: 10px 20px; background: #37a7c2; color: white; border: none; cursor: pointer;">
+                            Reload CMS
+                        </button>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
