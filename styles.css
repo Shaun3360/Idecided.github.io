@@ -1,4 +1,4 @@
-    :root {
+ :root {
       --primary: #37a7c2;    /* Main brand color */
       --secondary: #FFC857;  /* Accent color */
       --dark: #1A1A1A;       /* Dark backgrounds */
@@ -227,11 +227,36 @@
       display: flex;
       justify-content: center;
     }
+
+  .container1 h2{
+    color: var(--text-dark);
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: inline-block;
+    }
+
+  .container1 h2:after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, #ff8a00, #da1b60);
+    border-radius: 2px;
+        }
     
     p {
       margin-bottom: 1rem;
       line-height: 1.7;
       font-size: 1.1rem;
+    }
+
+    .col-md-10 p {
+      color: var(--text-light);
     }
     
     /* Reserve Button */
@@ -386,6 +411,7 @@
             font-size: 0.95rem;
             opacity: 0.8;
             line-height: 1.5;
+            color: white;
         }
 
         .play-btn {
@@ -1041,7 +1067,7 @@
 }
 .community-posts-carousel .community-post p {
   font-size: 0.9rem;
-  color: var(--text-light);
+  color: var(--text-dark);
   margin: 5px 0;
 }
 .community-posts-carousel .community-post .post-meta {
@@ -1219,4 +1245,17 @@
   border: none;
   padding: 10px 20px;
   border-radius: 50px;
+}
+
+/* Add spacing for PayFast button */
+.pay-with-payfast {
+  margin-top: 1.5rem;
+  padding: 0.75rem;
+  font-weight: 600;
+}
+
+/* Style for processing state */
+.pay-with-payfast[disabled] {
+  opacity: 0.8;
+  cursor: not-allowed;
 }

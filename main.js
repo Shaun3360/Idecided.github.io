@@ -336,29 +336,6 @@ document.addEventListener('DOMContentLoaded', function() {
     startAutoScroll();
 });
 
-
-document.querySelectorAll('.reserve-btn').forEach(button => {
-  button.addEventListener('click', function() {
-    const form = this.parentElement.querySelector('.booking-form');
-    form.style.display = form.style.display === 'none' ? 'block' : 'none';
-  });
-});
-
-// Show booking form when reserve button is clicked
-document.querySelectorAll('.reserve-btn').forEach(button => {
-  button.addEventListener('click', function() {
-    const form = this.parentElement.querySelector('.booking-form');
-    form.style.display = form.style.display === 'none' ? 'block' : 'none';
-  });
-});
-
-// Set workshop name in hidden field
-document.querySelectorAll('.register-btn').forEach(btn => {
-  btn.addEventListener('click', function() {
-    document.getElementById('workshop-name').value = this.dataset.title;
-  });
-});
-
 // WORKSHOP FUNCTIONALITY
 document.addEventListener('DOMContentLoaded', () => {
   // Workshop data
@@ -443,38 +420,6 @@ document.getElementById('submitDonation').addEventListener('click', function() {
     document.getElementById('payfastDonationForm').submit();
   });
 });
-
-// Handle pricing section payments
-document.querySelectorAll('.payfast-payment-form').forEach(form => {
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get user info from the booking form in the same card
-    const card = this.closest('.pricing-card');
-    const name = card.querySelector('[name="name"]')?.value || '';
-    const email = card.querySelector('[name="email"]')?.value || '';
-    
-    // Split name into first/last
-    const nameParts = name.trim().split(/\s+/);
-    const firstName = nameParts[0] || '';
-    const lastName = nameParts.slice(1).join(' ') || 'Customer';
-    
-    // Set PayFast parameters
-    this.querySelector('[name="name_first"]').value = firstName;
-    this.querySelector('[name="name_last"]').value = lastName;
-    this.querySelector('[name="email_address"]').value = email;
-    
-    // Show loading state
-    const btn = this.querySelector('button[type="submit"]');
-    btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Processing...';
-    btn.disabled = true;
-    
-    // Submit form
-    setTimeout(() => {
-      this.submit();
-    }, 500);
-  });
-});
 // ======= END UPDATED DONATION FUNCTIONALITY =======
 
   // Populate workshops
@@ -525,33 +470,6 @@ document.querySelectorAll('.payfast-payment-form').forEach(form => {
   });
 });
 
-// TOGGLE BOOKING FORMS
-document.querySelectorAll('.reserve-btn').forEach(button => {
-  button.addEventListener('click', function() {
-    const form = this.parentElement.querySelector('.booking-form');
-    form.style.display = form.style.display === 'none' ? 'block' : 'none';
-  });
-});
-
-document.querySelectorAll('form[action*="payfast"]').forEach(form => {
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get user info from booking form
-    const firstName = this.closest('.pricing-card').querySelector('[name="name"]').value.split(' ')[0] || '';
-    const lastName = this.closest('.pricing-card').querySelector('[name="name"]').value.split(' ')[1] || '';
-    const email = this.closest('.pricing-card').querySelector('[name="email"]').value || '';
-    
-    // Set PayFast parameters
-    this.querySelector('[name="name_first"]').value = firstName;
-    this.querySelector('[name="name_last"]').value = lastName;
-    this.querySelector('[name="email_address"]').value = email;
-    
-    // Submit form
-    this.submit();
-  });
-});
-
 // Update in main.js (Blog Loading Function)
 async function loadBlogPosts() {
   const container = document.getElementById('blog-posts');
@@ -597,3 +515,66 @@ async function loadBlogPosts() {
     container.innerHTML = `<div class="alert alert-danger">Error loading blog: ${error.message}</div>`;
   }
 }
+
+// ===== UPDATED PRICING SECTION FUNCTIONALITY =====
+document.querySelectorAll('.reserve-btn').forEach(button => {
+  button.addEventListener('click', function() {
+    const form = this.parentElement.querySelector('.booking-form');
+    form.style.display = form.style.display === 'none' ? 'block' : 'none';
+  });
+});
+
+// Handle "Pay with PayFast" button clicks
+document.querySelectorAll('.pay-with-payfast').forEach(button => {
+  button.addEventListener('click', function() {
+    const form = this.closest('.booking-form-data');
+    const payfastForm = document.getElementById('payfastDonationForm');
+    
+    // Collect form data
+    const formData = new FormData(form);
+    const fullName = formData.get('name') || '';
+    const nameParts = fullName.trim().split(/\s+/);
+    const firstName = nameParts[0] || '';
+    const lastName = nameParts.slice(1).join(' ') || 'Donor';
+    const email = formData.get('email') || '';
+    
+    // Get amount and item name from data attributes
+    const amount = this.dataset.amount;
+    const itemName = this.dataset.item;
+    
+    // Set PayFast parameters
+    document.getElementById('payfastAmount').value = amount;
+    document.getElementById('payfastItem').value = itemName;
+    document.getElementById('payfastFirstName').value = firstName;
+    document.getElementById('payfastLastName').value = lastName;
+    document.getElementById('payfastEmail').value = email;
+    
+    // Show loading state
+    const originalText = this.innerHTML;
+    this.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Processing...';
+    this.disabled = true;
+    
+    // First submit to Formspree
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        // Then submit to PayFast
+        payfastForm.submit();
+      } else {
+        alert('There was an error processing your request. Please try again.');
+        this.innerHTML = originalText;
+        this.disabled = false;
+      }
+    }).catch(error => {
+      console.error('Error:', error);
+      alert('There was an error processing your request. Please try again.');
+      this.innerHTML = originalText;
+      this.disabled = false;
+    });
+  });
+});
