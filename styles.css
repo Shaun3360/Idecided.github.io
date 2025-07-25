@@ -1352,3 +1352,24 @@
     margin-bottom: 2rem;
     color: var(--primary);
 }
+
+.blog-article h1 {
+  text-shadow: none !important;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .blog-article {
+    padding: 1rem;
+  }
+  
+  .blog-inline-img {
+    max-width: 100% !important;
+    float: none !important;
+    margin: 1rem 0 !important;
+  }
+  
+  .blog-main-img {
+    margin: 1rem 0;
+  }
+}
