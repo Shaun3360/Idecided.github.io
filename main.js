@@ -578,3 +578,24 @@ document.querySelectorAll('.pay-with-payfast').forEach(button => {
     });
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    // ...existing code...
+    
+    // Update community section links to use hash-based navigation
+    document.querySelectorAll('.community-post').forEach(post => {
+        const link = post.getAttribute('href');
+        if (link.startsWith('blog-post.html#')) {
+            post.addEventListener('click', (e) => {
+                // Save scroll position before navigating
+                sessionStorage.setItem('blogScrollPosition', window.scrollY);
+            });
+        }
+    });
+    
+    // Restore scroll position when returning from blog
+    if (sessionStorage.getItem('blogScrollPosition')) {
+        window.scrollTo(0, parseInt(sessionStorage.getItem('blogScrollPosition')));
+        sessionStorage.removeItem('blogScrollPosition');
+    }
+});

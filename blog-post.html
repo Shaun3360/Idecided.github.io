@@ -1,102 +1,352 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog Post - I DECIDED</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="styles.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I DECIDED Blog - Practical Skills for South African Graduates</title>
+    <meta name="description" content="Practical advice and success stories for South African matric graduates. Learn essential life skills, career guidance, and mentorship strategies.">
+    
+    <link rel="stylesheet" href="./styles.css">
+    
+    <!-- SEO Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://idecided.co.za/blog-post.html"
+        },
+        "headline": "I DECIDED Blog",
+        "description": "Practical skills and career guidance for South African high school graduates",
+        "publisher": {
+            "@type": "Organization",
+            "name": "I DECIDED",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://idecided.co.za/images/logo.png"
+            }
+        }
+    }
+    </script>
 </head>
 <body>
-  <!-- Your Header -->
-  <header class="header">...</header>
-
-  <main class="container my-5">
-    <article id="blog-post" class="blog-post">
-      <div class="text-center my-5">
-        <div class="spinner-border text-primary" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
+    <header class="header">
+<header class="header">
+    <div class="nav-inner">
+      <img src="./images/logo.png" alt="I DECIDED Logo - Empowering young graduates" class="header-logo">
+      <div class="nav-links">
+        <a href="#success">Success Stories</a>
+        <a href="#pricing">Pricing & Investment</a>
+        <a href="#enroll">Reserve Your Seat</a>
       </div>
-    </article>
-  </main>
+      <button class="donate-btn">Donate</button>
+      <button class="mobile-menu-btn" aria-label="Open menu">☰</button>
+    </div>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+      <div class="mobile-nav-links">
+        <a href="#success">Success Stories</a>
+        <a href="#pricing">Pricing & Investment</a>
+        <a href="#enroll">Reserve Your Seat</a>
+        <a href="#about">About</a>
+        <a href="#community">Community</a>
+      </div>
+    </div>
+  </header>
 
-  <!-- Your Footer -->
-  <footer class="footer">...</footer>
+    </header>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      const params = new URLSearchParams(window.location.search);
-      const postSlug = [...params.keys()][0];
-      
-      if (!postSlug) {
-        document.getElementById('blog-post').innerHTML = `
-          <div class="alert alert-danger">
-            Blog post not found
-          </div>
-        `;
-        return;
-      }
-      
-      try {
-        const response = await fetch(
-          `https://api.github.com/repos/Shaun3360/Idecided.github.io/contents/content/blog/${postSlug}.md?ref=main`
-        );
+    <main class="container" style="padding: 2rem 0;">
+        <div id="blog-content">
+            <!-- Full blog content will load here -->
+        </div>
         
-        if (!response.ok) throw new Error('Post not found');
-        
-        const file = await response.json();
-        const content = atob(file.content);
-        
-        // Extract front matter
-        const getMeta = key => {
-          const match = content.match(new RegExp(`${key}: (.*)`));
-          return match ? match[1].trim() : '';
-        };
-        
-        const title = getMeta('title');
-        const date = getMeta('date');
-        const image = getMeta('image');
-        const author = getMeta('author');
-        const excerpt = getMeta('excerpt');
-        
-        // Extract markdown body
-        const markdownBody = content.split('---').slice(2).join('---').trim();
-        
-        // Render post
-        document.getElementById('blog-post').innerHTML = `
-          <header class="mb-5 text-center">
-            <h1 class="display-4 mb-3">${title}</h1>
-            <div class="d-flex justify-content-center align-items-center mb-4">
-              <span class="me-3">By ${author}</span>
-              <span>•</span>
-              <span class="ms-3">${new Date(date).toLocaleDateString()}</span>
+        <section id="other-blogs">
+            <h2>More Articles</h2>
+            <div class="blog-previews">
+                <!-- Other blog previews will load here -->
             </div>
-            ${image ? `<img src="${image}" alt="${title}" class="img-fluid rounded mb-4">` : ''}
-          </header>
-          
-          <div class="post-content mb-5">
-            ${marked.parse(markdownBody)}
-          </div>
-          
-          <div class="text-center mt-5">
-            <a href="index.html" class="btn btn-primary">
-              ← Back to Home
+        </section>
+    </main>
+
+    <footer class="footer">
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="./images/logo.png" alt="I DECIDED Logo" class="footer-logo" loading="lazy">
+          <p>Empowering young graduates with skills for success</p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/Idecided.co.za" target="_blank" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96C18.34 21.21 22 17.06 22 12.06C22 6.53 17.5 2.04 12 2.04Z" />
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/idecided.co.za/" target="_blank" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+              </svg>
+            </a>
+            <a href="https://x.com/idecided.co.za" target="_blank" aria-label="Twitter/X">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z" />
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/company/ldecided" target="_blank" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M18.5,18.5V13.2A3.26,3.26 0 0,0 15.24,9.94C14.39,9.94 13.4,10.46 12.92,11.24V10.13H10.13V18.5H12.92V13.57C12.92,12.8 13.54,12.17 14.31,12.17A1.4,1.4 0 0,1 15.71,13.57V18.5H18.5M6.88,8.56A1.68,1.68 0 0,0 8.56,6.88C8.56,5.95 7.81,5.19 6.88,5.19A1.69,1.69 0 0,0 5.19,6.88C5.19,7.81 5.95,8.56 6.88,8.56M8.27,18.5V10.13H5.5V18.5H8.27Z" />
+              </svg>
             </a>
           </div>
-        `;
+        </div>
+
+        <div class="local-seo">
+  <h3>I DECIDED - Cape Town</h3>
+  <p>Practical upskill courses for South African youth</p>
+  <p>📍 Serving graduates in: Cape Town, Johannesburg, Durban, Pretoria</p>
+</div>
         
-        // Update page title
-        document.title = `${title} - I DECIDED`;
-      } catch (error) {
-        document.getElementById('blog-post').innerHTML = `
-          <div class="alert alert-danger">
-            Error loading post: ${error.message}
+        <div class="footer-links-group">
+          <h3>Quick Links</h3>
+          <div class="footer-links">
+            <a href="#about">About</a>
+            <a href="#success">Success Stories</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#community">Community</a>
           </div>
-        `;
-      }
-    });
-  </script>
+        </div>
+        
+        <div class="footer-links-group">
+          <h3>Contact</h3>
+          <div class="footer-links">
+            <a href="mailto:shauningwane09@gmail.com">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />
+              </svg>
+              info@idecided.org
+            </a>
+            <a href="tel:+27729822804">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z" />
+              </svg>
+              +27 72 982 2804
+            </a>
+            <a href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+              </svg>
+              Cape Town, South Africa
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2025 I DECIDED. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+    </footer>
+
+    <script>
+    // Blog database
+    const blogs = {
+        "post1": {
+            id: "post1",
+            title: "Empowering Local Talent",
+            date: "Jan 15, 2025",
+            description: "Discover how our community workshops are transforming lives through hands-on training and local collaboration.",
+            content: `
+                    <div class="blog-article">
+      <h1>Clippers for a Cause: Free Haircuts, Big Smiles</h1>
+      <p class="blog-meta">Posted on May 20, 2025 | 6 min read</p>
+      <img src="./images/community1.jpg" alt="Volunteer barber cutting hair outdoors" class="blog-main-img">
+      
+      <h2>Bringing the Barbershop to the Street</h2>
+      <p>On a crisp Saturday morning in April, our team rolled up into Imizamo Yethu’s community square with nothing but portable chairs, folding tables, and a handful of clippers. Our goal? Offer free, high‑quality haircuts to anyone who stopped by—and more importantly, listen to their stories.</p>
+      
+      <h2>Why We Started “Clippers for a Cause”</h2>
+      <p>We noticed that many residents face long waits and high costs to maintain simple grooming needs. Beyond appearances, a clean haircut can boost confidence, help with job prospects, and spread a sense of dignity. We asked ourselves: if we have the skills and tools, why not share them?</p>
+      
+      <h2>Stories Shared in the Chair</h2>
+      <p>Each haircut came with a conversation. We heard from:</p>
+      <ul>
+        <li><strong>Thabo, 19:</strong> Nervous about his first job interview, he admitted that looking “sharp” helped him walk into that room with his head held high.</li>
+        <li><strong>Mrs. Daniels, 62:</strong> A grandmother who hadn’t treated herself in years. She beamed at her reflection, telling us it felt like her younger self again.</li>
+        <li><strong>Little Aisha, 8:</strong> Eager to show her new style to classmates. She left with glitter in her braids and confidence on her face.</li>
+      </ul>
+      
+      <blockquote>
+        “I came here just for a free cut, but I’m leaving with more than that—people who care, who listen.”  
+        <br>— Sipho M.
+      </blockquote>
+      
+      <h2>Behind the Clippers</h2>
+      <p>None of this would’ve been possible without our volunteer barbers:</p>
+      <ul>
+        <li><strong>Javier:</strong> Our senior stylist with 10 years of experience. He traveled from Cape Town’s CBD just to give back.</li>
+        <li><strong>Lindiwe:</strong> A self‑taught barber whose gentle approach put even the shyest in the chair at ease.</li>
+        <li><strong>The Community Teens:</strong> They helped set up, handed out refreshments, and learned the art of barbering for future pop‑up events.</li>
+      </ul>
+      
+      <h2>A Day in the Life</h2>
+      <p>From 9 AM until sundown, we cut, chatted, and laughed. Our setup looked more like a block party than a service station—kids ran around getting candy floss, elders exchanged recipes while waiting their turn, and music filled the air. By the end of the day, over <strong>120 haircuts</strong> had been given, and we’d collected dozens of heartfelt thank‑you notes.</p>
+      
+      <h2>Impact Beyond the Fade</h2>
+      <p>We measured success not just in numbers, but in moments:</p>
+      <ul>
+        <li>Teens feeling empowered to apply for internships.</li>
+        <li>Jobseekers walking away with a renewed sense of self-worth.</li>
+        <li>Volunteers discovering a passion for social outreach and barbering alike.</li>
+      </ul>
+      
+      <h2>What’s Next?</h2>
+      <p>“Clippers for a Cause” is now monthly. We’re ramping up to include:</p>
+      <ol>
+        <li>Free beard trims and styling workshops</li>
+        <li>Career talks for young adults on grooming and professionalism</li>
+        <li>Partnerships with local salons to offer internships</li>
+      </ol>
+      <p>Our roadmap is clear: <em>more smiles, more stories, more community</em>.</p>
+      
+      <h2>How You Can Help</h2>
+      <p>Interested in volunteering or sponsoring supplies? Reach out via our <a href="/contact.html">contact page</a>. Together, we can keep the clippers buzzing and the stories flowing.</p>
+      
+      <p>—<br>Your Friends at <strong>I Decided</strong></p>
+    </div>
+            `
+        },
+        "post2": {
+            id: "post2",
+            title: "Success Through Skill Sharing",
+            date: "Feb 02, 2025",
+            description: "Our recent pop-up event brought together professionals and graduates for an inspiring exchange of ideas.",
+            content: `
+                <div class="blog-article">
+                    <h1>Success Through Skill Sharing</h1>
+                    <p class="blog-meta">Posted on Feb 02, 2025 | 5 min read</p>
+                    
+                    <img src="./images/community2.webp" alt="Skill sharing success story" class="blog-main-img">
+                    
+                    <p>Our skill-sharing events create bridges between experienced professionals and recent graduates...</p>
+                    
+                    <div class="blog-tags">
+                        <span>#Networking</span>
+                        <span>#Mentorship</span>
+                    </div>
+                </div>
+            `
+        },
+        "post3": {
+            id: "post3",
+            title: "Innovation in Education",
+            date: "Mar 10, 2025",
+            description: "Explore the new trends in community-based learning that are reshaping the future of education.",
+            content: `
+                <div class="blog-article">
+                    <h1>Innovation in Education</h1>
+                    <p class="blog-meta">Posted on Mar 10, 2025 | 7 min read</p>
+                    
+                    <img src="./images/community3.jpeg" alt="Innovative education trends" class="blog-main-img">
+                    
+                    <p>Traditional education models are being transformed by community-driven approaches...</p>
+                    
+                    <div class="blog-tags">
+                        <span>#Education</span>
+                        <span>#Innovation</span>
+                    </div>
+                </div>
+            `
+        },
+        "post4": {
+            id: "post4",
+            title: "Mentorship Impact",
+            date: "Apr 18, 2025",
+            description: "Learn how our mentorship program is helping graduates transition into successful careers.",
+            content: `
+                <div class="blog-article">
+                    <h1>Mentorship Impact</h1>
+                    <p class="blog-meta">Posted on Apr 18, 2025 | 8 min read</p>
+                    
+                    <img src="./images/mentor-icon.jpg" alt="Mentorship program benefits" class="blog-main-img">
+                    
+                    <p>Our mentorship program has helped over 200 graduates secure employment within 6 months...</p>
+                    
+                    <div class="blog-tags">
+                        <span>#Mentorship</span>
+                        <span>#CareerSuccess</span>
+                    </div>
+                </div>
+            `
+        }
+    };
+
+    // Load the requested blog
+    function loadBlog() {
+        const blogId = window.location.hash.substring(1); // Get #post1 from URL
+        const blogContainer = document.getElementById('blog-content');
+        const otherBlogsContainer = document.querySelector('#other-blogs .blog-previews');
+        
+        if (blogs[blogId]) {
+            // Display requested blog
+            const blog = blogs[blogId];
+            blogContainer.innerHTML = blog.content;
+            
+            // Update SEO elements
+            document.title = `${blog.title} | I DECIDED`;
+            document.querySelector('meta[name="description"]').content = blog.description;
+            
+            // Display other blogs (excluding current one)
+            let otherBlogsHTML = '';
+            for (const id in blogs) {
+                if (id !== blogId) {
+                    const otherBlog = blogs[id];
+                    otherBlogsHTML += `
+                        <div class="blog-preview-card">
+                            <img src="${otherBlog.content.match(/src="(.*?)"/)[1]}" alt="${otherBlog.title}">
+                            <div class="blog-preview-content">
+                                <h3><a href="blog-post.html#${id}">${otherBlog.title}</a></h3>
+                                <p class="blog-meta">${otherBlog.date}</p>
+                                <p>${otherBlog.description}</p>
+                                <a href="blog-post.html#${id}" class="read-more">Read More →</a>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            otherBlogsContainer.innerHTML = otherBlogsHTML;
+        } else {
+            // If no specific blog requested, show all blogs
+            let allBlogsHTML = '';
+            for (const id in blogs) {
+                const blog = blogs[id];
+                allBlogsHTML += `
+                    <div class="blog-preview-card">
+                        <img src="${blog.content.match(/src="(.*?)"/)[1]}" alt="${blog.title}">
+                        <div class="blog-preview-content">
+                            <h3><a href="blog-post.html#${id}">${blog.title}</a></h3>
+                            <p class="blog-meta">${blog.date}</p>
+                            <p>${blog.description}</p>
+                            <a href="blog-post.html#${id}" class="read-more">Read More →</a>
+                        </div>
+                    </div>
+                `;
+            }
+            blogContainer.innerHTML = `
+                <h1>I DECIDED Blog</h1>
+                <p>Practical advice for life after matric</p>
+                <div class="blog-previews">${allBlogsHTML}</div>
+            `;
+            document.getElementById('other-blogs').style.display = 'none';
+        }
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', loadBlog);
+    window.addEventListener('hashchange', loadBlog);
+    </script>
 </body>
 </html>
