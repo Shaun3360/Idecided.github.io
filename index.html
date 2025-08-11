@@ -97,7 +97,6 @@
 <link rel="shortcut icon" href="./favicon/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png" />
 <link rel="manifest" href="./favicon/site.webmanifest" />
-
 </head>
 <body>
  <!-- Header -->
@@ -447,33 +446,29 @@
   </div>
 
   <!-- Pricing & Investment Section - UPDATED -->
-  <section id="pricing" class="section">
+  <!-- Updated Pricing Section -->
+  <section id="pricing" class="pricing-section">
     <div class="container">
-      <h2 class="section-title">Pricing & Investment</h2>
-      <p class="text-center" style="max-width: 700px; margin: 0 auto 2rem;">
-        We offer flexible investment options that secure your spot in our course while integrating you into a vibrant, hands-on community.
-      </p>
-      
-      <div class="pricing-cards">
-        <!-- Flexible Investment Card - UPDATED -->
+      <h2 class="section-title">Choose Your Path</h2>
+      <div class="pricing-container">
+        <!-- Skill Exchange Plan -->
         <div class="pricing-card">
-          <h3>Flexible Investment</h3>
-          <span class="price">R250</span>
-          <p>Start with a modest deposit and contribute your skills to secure enrollment</p>
+          <h3>Skill Exchange</h3>
+          <p class="price">R800</p>
           <ul class="features">
-            <li>Skills-based enrollment option</li>
+            <li>IDECIDED Blueprint</li>
             <li>Help at workshops</li>
-            <li>Create social media content</li>
+            <li>Create social-media content</li>
             <li>Community support network</li>
-            <li>Full course access</li>
           </ul>
-          <button class="reserve-btn">Reserve Your Seat</button>
+          <p class="savings">Save R1 550</p>
+          <button class="btn-pricing btn-secondary" data-plan="skill-exchange">Join Community</button>
           
-          <!-- Booking Form for Flexible Investment - UPDATED -->
-          <div class="booking-form" style="display:none; margin-top:20px;">
-            <form id="flexibleForm" class="booking-form-data" action="https://formspree.io/f/xvgrjewa" method="POST">
-              <input type="hidden" name="_subject" value="New Course Booking - Flexible">
-              <input type="hidden" name="package" value="Flexible Investment">
+          <!-- Hidden Form for Skill Exchange -->
+          <div class="booking-form" style="display: none; margin-top: 25px;">
+            <form class="booking-form-data" action="https://formspree.io/f/xvgrjewa" method="POST">
+              <input type="hidden" name="_subject" value="New Booking - Skill Exchange">
+              <input type="hidden" name="package" value="Skill Exchange">
               <input type="text" name="_gotcha" style="display:none;">
               
               <div class="mb-3">
@@ -487,38 +482,37 @@
               </div>
               <div class="mb-3">
                 <textarea name="message" class="form-control" 
-                          placeholder="What skills do you want to develop?" rows="2"></textarea>
+                          placeholder="What skills will you contribute?" rows="2"></textarea>
               </div>
               
-              <!-- PayFast Payment Button - UPDATED -->
-              <button type="button" class="btn btn-success w-100 pay-with-payfast" 
-                      data-amount="250" 
-                      data-item="I DECIDED Course - Flexible">
+              <button type="button" class="btn-pricing btn-primary pay-with-payfast" 
+                      data-amount="800" 
+                      data-item="I DECIDED Course - Skill Exchange">
                 Pay with PayFast
               </button>
             </form>
           </div>
         </div>
         
-        <!-- Premium Investment Card - UPDATED -->
-        <div class="pricing-card">
-          <h3>Premium Investment</h3>
-          <span class="price">R1,500</span>
-          <p>Pay the full fee for premium mentorship and accelerated success</p>
+        <!-- IDECIDED Blueprint Plan -->
+        <div class="pricing-card featured">
+          <div class="early-bird-banner" id="eb-banner">Early‐Bird: R1 950 <span class="countdown" id="eb-countdown"></span></div>
+          <h3>IDECIDED Blueprint</h3>
+          <p class="original-price">Value <span>R4 500</span></p>
+          <p class="price">R2 350</p>
           <ul class="features">
-            <li>Full course access</li>
-            <li>Premium mentorship sessions</li>
-            <li>Advanced training modules</li>
-            <li>Priority workshop access</li>
-            <li>Career acceleration program</li>
+            <li>Full Course Access</li>
+            <li>Vocational Training</li>
+            <li>Job Placement in 3 months</li>
+            <li>Community support network</li>
           </ul>
-          <button class="reserve-btn">Reserve Your Seat</button>
+          <button class="btn-pricing btn-primary" data-plan="blueprint">Enroll Now</button>
           
-          <!-- Booking Form for Premium Investment - UPDATED -->
-          <div class="booking-form" style="display:none; margin-top:20px;">
-            <form id="premiumForm" class="booking-form-data" action="https://formspree.io/f/xvgrjewa" method="POST">
-              <input type="hidden" name="_subject" value="New Course Booking - Premium">
-              <input type="hidden" name="package" value="Premium Investment">
+          <!-- Hidden Form for Blueprint -->
+          <div class="booking-form" style="display: none; margin-top: 25px;">
+            <form class="booking-form-data" action="https://formspree.io/f/xvgrjewa" method="POST">
+              <input type="hidden" name="_subject" value="New Booking - IDECIDED Blueprint">
+              <input type="hidden" name="package" value="IDECIDED Blueprint">
               <input type="text" name="_gotcha" style="display:none;">
               
               <div class="mb-3">
@@ -535,18 +529,183 @@
                           placeholder="What skills do you want to develop?" rows="2"></textarea>
               </div>
               
-              <!-- PayFast Payment Button - UPDATED -->
-              <button type="button" class="btn btn-success w-100 pay-with-payfast" 
-                      data-amount="1500" 
-                      data-item="I DECIDED Course - Premium">
+              <button type="button" class="btn-pricing btn-primary pay-with-payfast" 
+                      data-amount="2350" 
+                      data-item="I DECIDED Blueprint">
                 Pay with PayFast
               </button>
             </form>
           </div>
         </div>
+        
+        <!-- Alumni Subscription Plan -->
+        <div class="pricing-card">
+          <h3>Alumni Network</h3>
+          <p class="price">R350<span>/mo</span></p>
+          <ul class="features">
+            <li>Beta course access</li>
+            <li>Quarterly pulse workshops</li>
+            <li>Career Acceleration Program</li>
+            <li>Community support network</li>
+          </ul>
+          <p class="savings">Lifetime perks & early access</p>
+          <button class="btn-pricing btn-secondary" data-plan="alumni">Subscribe</button>
+          
+          <!-- Hidden Form for Alumni -->
+          <div class="booking-form" style="display: none; margin-top: 25px;">
+            <form class="booking-form-data" action="https://formspree.io/f/xvgrjewa" method="POST">
+              <input type="hidden" name="_subject" value="New Subscription - Alumni Network">
+              <input type="hidden" name="package" value="Alumni Network">
+              <input type="text" name="_gotcha" style="display:none;">
+              
+              <div class="mb-3">
+                <input type="text" name="name" class="form-control" placeholder="Full Name" required>
+              </div>
+              <div class="mb-3">
+                <input type="email" name="email" class="form-control" placeholder="Email" required>
+              </div>
+              <div class="mb-3">
+                <input type="tel" name="phone" class="form-control" placeholder="Phone Number">
+              </div>
+              <div class="mb-3">
+                <textarea name="message" class="form-control" 
+                          placeholder="What benefits are you most interested in?" rows="2"></textarea>
+              </div>
+              
+              <button type="button" class="btn-pricing btn-primary pay-with-payfast" 
+                      data-amount="350" 
+                      data-item="Alumni Network Subscription">
+                Subscribe via PayFast
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    <div class="faq-container">
+      <div class="faq-intro">
+        <h3>Real Questions from Graduates Like You</h3>
+        <p>No jargon - just straight answers about what you're getting</p>
+      </div>
+
+      <!-- FAQ Item 1 -->
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <div class="faq-icon">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <div class="faq-question-content">
+            <h4>What exactly is the Career Acceleration Program?</h4>
+            <p class="faq-subtitle">Your express ticket to getting hired</p>
+          </div>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>Think of it as your fast-track ticket to getting hired or starting your business. We focus on practical steps that actually work.</p>
+            
+            <p>You'll transform your CV from "just okay" to "wow, we need to interview this person!" and build a LinkedIn profile that actually gets noticed by employers.</p>
+            
+            <p>We'll teach you how to ace interviews by practicing with real hiring managers and get direct introductions to companies that are actually hiring right now.</p>
+            
+            <div class="highlight">
+              <p>Instead of taking months to figure things out alone, we give you the exact steps to get hired or start earning in about 3 months.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 2 -->
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <div class="faq-icon">
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <div class="faq-question-content">
+            <h4>What happens in the Monthly Pulse Workshops?</h4>
+            <p class="faq-subtitle">Your monthly career check-up</p>
+          </div>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>These are your monthly check-ins with people who've been where you are. Each live session tackles real problems you're facing right now.</p>
+            
+            <p>We'll answer questions like "How do I ask for a raise?" and "How do I find my first clients?" with practical solutions.</p>
+            
+            <p>You'll get insider insights from experts like successful barbers, baristas, and business owners during live Q&A sessions.</p>
+            
+            <p>We also teach quick skills that matter immediately - like using AI tools or Instagram for business - and celebrate your wins along the way.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 3 -->
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <div class="faq-icon">
+            <i class="fas fa-flask"></i>
+          </div>
+          <div class="faq-question-content">
+            <h4>What's "Beta Course Access" in the Alumni Network?</h4>
+            <p class="faq-subtitle">Be the first to try new courses</p>
+          </div>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>This is your backstage pass to new courses before anyone else. As an alumni member, you get exclusive early access to brand new workshops we're creating.</p>
+            
+            <p>You'll be among the first to try fresh content and your feedback will help shape the final version of the course.</p>
+            
+            <div class="highlight">
+              <p>You're not just taking courses - you're helping build better ones for future students while learning cutting-edge skills months before they're publicly available.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Item 4 -->
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <div class="faq-icon">
+            <i class="fas fa-exchange-alt"></i>
+          </div>
+          <div class="faq-question-content">
+            <h4>How does the Skill Exchange option work?</h4>
+            <p class="faq-subtitle">Learn now, contribute later</p>
+          </div>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            <p>It's simple: You pay a small R250 deposit to secure your spot. After completing the course, you help others using the skills you've learned.</p>
+            
+            <p>This could mean assisting at workshops you've taken, creating social media content about your experience, or supporting new students starting their journey.</p>
+            
+            <p>You get the knowledge now, then help others get the same opportunity later - it's how we keep the cycle of learning and giving going.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+
+
+
+  <!-- Hidden PayFast Form -->
+  <form id="payfastDonationForm" action="https://www.payfast.co.za/eng/process" method="post" style="display: none;">
+    <input type="hidden" name="merchant_id" value="30913939">
+    <input type="hidden" name="merchant_key" value="xreimvqbtq652">
+    <input type="hidden" name="return_url" value="https://idecided.co.za/success.html">
+    <input type="hidden" name="cancel_url" value="https://idecided.co.za/cancel.html">
+    <input type="hidden" name="notify_url" value="https://idecided.co.za/notify">
+    
+    <input type="hidden" name="amount" id="payfastAmount">
+    <input type="hidden" name="item_name" id="payfastItem">
+    <input type="hidden" name="name_first" id="payfastFirstName">
+    <input type="hidden" name="name_last" id="payfastLastName">
+    <input type="hidden" name="email_address" id="payfastEmail">
+  </form>
 
   <!-- Workshop Registration Modal -->
   <div class="modal fade" id="workshopModal" tabindex="-1">
@@ -585,16 +744,101 @@
     </div>
   </div>
   
-  <section id="workshops" class="section">
-    <div class="container">
-      <h2 class="section-title">Upcoming Workshops</h2>
-      <div class="workshop-list row">
-        <!-- Will be populated by JS -->
+  <!-- Enhanced Workshops Section -->
+<section id="workshops" class="section">
+  <div class="container">
+    <h2 class="section-title">Upcoming Workshops</h2>
+    <div class="workshop-grid">
+      <div class="workshop-card">
+        <div class="workshop-badge">Free</div>
+        <div class="workshop-date">15 July 2025</div>
+        <h3>Barber Skills Pop-up</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Cape Town CBD</p>
+        <div class="workshop-progress">
+          <div class="progress-bar" style="width: 85%"></div>
+          <span>17/20 spots filled</span>
+        </div>
+        <button class="btn btn-primary register-btn" data-title="Barber Skills Pop-up">
+          Join Workshop
+        </button>
+      </div>
+      
+      <div class="workshop-card featured">
+        <div class="workshop-badge">Mentorship</div>
+        <div class="workshop-date">22 July 2025</div>
+        <h3>Finding Your Path</h3>
+        <p><i class="fas fa-video"></i> Online Session</p>
+        <div class="workshop-progress">
+          <div class="progress-bar" style="width: 45%"></div>
+          <span>23/50 spots filled</span>
+        </div>
+        <button class="btn btn-primary register-btn" data-title="Finding Your Path">
+          Reserve Seat
+        </button>
+      </div>
+      
+      <div class="workshop-card">
+        <div class="workshop-badge">New</div>
+        <div class="workshop-date">5 August 2025</div>
+        <h3>Barista Basics</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Hout Bay</p>
+        <div class="workshop-progress">
+          <div class="progress-bar" style="width: 30%"></div>
+          <span>6/20 spots filled</span>
+        </div>
+        <button class="btn btn-primary register-btn" data-title="Barista Basics">
+          Join Workshop
+        </button>
       </div>
     </div>
-  </section>
-  
-  <!-- Community Section -->
+  </div>
+</section>
+
+<!-- Community Section - Enhanced -->
+<section id="community">
+  <div class="community-container">
+    <div class="community-content">
+      <div class="community-text">
+        <h2>Beyond the Classroom</h2>
+        <p>Our pop-up events bring together graduates, mentors, and professionals for hands-on skill-building:</p>
+        <ul class="community-features">
+          <li><i class="fas fa-cut"></i> Free haircut days</li>
+          <li><i class="fas fa-coffee"></i> Barista training</li>
+          <li><i class="fas fa-handshake"></i> Networking sessions</li>
+          <li><i class="fas fa-user-graduate"></i> Mentor meetups</li>
+        </ul>
+        <button class="reserve-btn">Volunteer with Us</button>
+      </div>
+      
+      <div class="community-highlight">
+        <div class="stat-bubble">
+          <div class="stat-value">73%</div>
+          <div class="stat-label">Employment Rate</div>
+        </div>
+        <p>within 6 months of completing our program</p>
+        <div class="testimonial">
+          <img src="./images/thabo-profile.jpg" alt="Success story">
+          <p>"I DECIDED gave me the skills and network to land my first job!"</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="community-gallery">
+      <div class="gallery-item">
+        <img src="./images/community1.jpg" alt="Barber workshop">
+        <div class="gallery-caption">Free Haircut Day</div>
+      </div>
+      <div class="gallery-item">
+        <img src="./images/Bartender.jpg" alt="Barista training">
+        <div class="gallery-caption">Barista Training</div>
+      </div>
+      <div class="gallery-item">
+        <img src="./images/lerato-profile.webp" alt="Networking event">
+        <div class="gallery-caption">Career Networking</div>
+      </div>
+    </div>
+  </div>
+
   <section id="community-intro" class="section">
     <div class="container">
       <h2 class="section-title">Community Engagement</h2>
@@ -654,26 +898,30 @@
         </button>
       </div>
 
-
-      <div class="community-highlight">
-          <h2>73% Employment Rate</h2>
-          <p>within 6 months of completing our program (2023 results)</p>
-          <button class="reserve-btn" style="margin-top: 2rem;">Join Our Community</button>
-        </div>
     </div>
   </section>
-  
-  <!-- Partners Section -->
-  <section class="section" style="background-color: #f8f9fa;">
-    <div class="container">
-      <h2 class="section-title">Trusted By</h2>
-      <div class="partners">
-        <img src="./images/FAA_LOGO.avif" alt="FAA NGO" class="partner-logo" loading="lazy">
-        <img src="./images/Intle_Logo.avif" alt="Intle College" class="partner-logo" loading="lazy">
-        <img src="./images/Massimo_Logo.png" alt="Local Business" class="partner-logo" loading="lazy">
+</section>
+
+<!-- Partners Section - Updated -->
+<section class="partners-section">
+  <div class="container">
+    <h2 class="section-title">Trusted By</h2>
+    <div class="partners-grid">
+      <div class="partner-card">
+        <img src="./images/FAA_LOGO.avif" alt="FAA NGO">
+        <p>Providing mentorship programs</p>
+      </div>
+      <div class="partner-card">
+        <img src="./images/Intle_Logo.avif" alt="Intle College">
+        <p>Educational partner</p>
+      </div>
+      <div class="partner-card">
+        <img src="./images/Massimo_Logo.png" alt="Local Business">
+        <p>Industry placement partner</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
   
 <!-- Newsletter Section - UPDATED -->
   <section class="newsletter">
@@ -800,8 +1048,6 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
-  
-  <!-- Main JS -->
   <script src="./main.js" defer></script>
 </body>
 </html>
